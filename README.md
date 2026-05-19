@@ -1,33 +1,55 @@
 # HOMEHOST
 
-A ideia inicial desse projeto era desenvolver um site/aplicação, que serviria de inicio e de suporte para uma pessoa, que tivesse interesse em entrar na area de tecnologia ou software linux.
+A ideia inicial deste projeto era desenvolver um site/aplicação que servisse como ponto de partida e suporte para pessoas interessadas em ingressar na área de tecnologia ou no universo do software livre/Linux.
 
-## Documentação do projeto
+## Documentação do Projeto
 
-#### [Clone do projeto]
-Para começar, tenha o repositório clonado em sua maquina utilizando o comando:
+#### Clonar o projeto
 
+Para começar, clone o repositório em sua máquina utilizando o comando:
+
+```bash
 git clone https://github.com/Myguel-H/hosthome.git
+```
 
-#### [Iniciar projeto]
-Com o projeto em sua maquina você deve possuir o php instalado, após isso para "rodar" o projeto em sua maquina (localhost), utilize o comando no terminal:
+#### Iniciar o projeto
 
-php -S localhost:"Porta de preferência. Ex: 2000"  
+Com o projeto em sua máquina, é necessário possuir o PHP instalado. Após isso, para executar o projeto localmente (localhost), utilize o seguinte comando no terminal:
 
-Obs: Se quiser pode deixar sem porta específica, ele ira retornar uma porta aleatoria livre.
+```bash
+php -S localhost:2000
+```
 
-Após isso acesse em seu navegador a url que foi retornada no terminal. Ex: "localhost: 2000 (Ou porta de preferência)"
+Você pode substituir `2000` pela porta de sua preferência.
 
-Após acessar o projeto em localhost, terá acesso a pág principal, onde poderá aprender um pouco sobre o software livre.
+> Obs.: Caso nenhuma porta seja especificada, o PHP poderá utilizar uma porta disponível automaticamente.
 
-#### [Lógica do projeto]
+Após executar o comando, acesse no navegador a URL retornada pelo terminal. Exemplo:
 
-Está aplicação foi desenvolvida utilizando [MVC](https://www.devmedia.com.br/introducao-ao-padrao-mvc/29308) -(Model-View-Controller):
+```bash
+http://localhost:2000
+```
 
-[HTML5](https://developer-mozilla-org.translate.goog/en-US/docs/Glossary/HTML5?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt&_x_tr_pto=tc) - Para construção das estruturas das páginas. 
-[CSS](https://developer.mozilla.org/pt-BR/docs/Web/CSS) - Estilização das páginas (Frontend).
-[PHP](https://www.php.net/docs.php) - Lógica da estrutura (Backend).
+Ao acessar o projeto em localhost, você terá acesso à página principal, onde poderá aprender um pouco mais sobre software livre.
 
-Sobre a lógica:
+---
 
-A estrutura 
+## Lógica do Projeto
+
+Esta aplicação foi desenvolvida utilizando o padrão de arquitetura [MVC](https://www.devmedia.com.br/introducao-ao-padrao-mvc/29308) *(Model-View-Controller)*.
+
+### Tecnologias utilizadas
+
+- [HTML5](https://developer.mozilla.org/pt-BR/docs/Glossary/HTML5) — Estruturação das páginas.
+- [CSS](https://developer.mozilla.org/pt-BR/docs/Web/CSS) — Estilização das páginas (Frontend).
+- [PHP](https://www.php.net/docs.php) — Lógica e funcionamento da aplicação (Backend).
+
+### Sobre a lógica
+
+O projeto segue o padrão MVC, separando responsabilidades entre:
+
+- **Model** → Responsável pela lógica de dados e comunicação.
+- **View** → Responsável pela interface visual exibida ao usuário.
+- **Controller** → Responsável por intermediar as requisições entre Model e View.
+
+Essa separação torna o projeto mais organizado, escalável e de fácil manutenção.
