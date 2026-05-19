@@ -1,0 +1,17 @@
+postgresql
+
+Acessar
+
+sudo -u postgres psql
+
+CREATE USER 'usuario' WITH PASSWORD 'sua senha' CREATDB; //CREATEDB é usado para permitir op novo usuario a criar bancos de dados.
+CREATE DATABASE 'nome do seu banco';
+ ou se ja tiver usuario: 
+psql -U 'usuario' -d 'nome do banco de dados'
+
+
+--Banco de dados(Tabelas) do projeto
+
+CREATE TABLE user
+
+após psql ser acessado, para criar o banco de dados e 
