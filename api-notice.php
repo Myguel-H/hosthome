@@ -3,7 +3,7 @@ $apikey = "2f3f43f2dec78acf404c40487b93ba00";
 $category = "technology";
 $state = "paraná";
 #Não enconste nesse link !
-$url = "https://gnews.io/api/v4/top-headlines?category=$category&q=$state&lang=pt&country=br&max=10&apikey=$apikey";
+$url = "https://gnews.io/api/v4/top-headlines?category=$category&q=$state&lang=pt&country=br&max=08&apikey=$apikey";
 $response = file_get_contents($url);
 $data = json_decode($response, true);
 

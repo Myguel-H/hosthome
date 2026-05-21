@@ -12,6 +12,28 @@ psql -U 'usuario' -d 'nome do banco de dados'
 
 --Banco de dados(Tabelas) do projeto
 
-CREATE TABLE user
+CREATE TABLE users (
+id SERIAL PRIMARY KEY, 
+name VARCHAR(100) NOT NULL,
+age VARCHAR(30),
+sex VARCHAR(10),
+phone VARCHAR(16),
+email VARCHAR(45),
+type VARCHAR(20) DEFAULT 'comum',
+avatar VARCHAR(255) DEFAULT '/static-person/default-avatar.png',
+data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP );
+
+CREATE TABLE users (
+id SERIAL PRIMARY KEY, 
+name VARCHAR(100) NOT NULL,
+age VARCHAR(30),
+sex VARCHAR(10),
+phone VARCHAR(16),
+email VARCHAR(45),
+type VARCHAR(20) DEFAULT 'admin-',
+avatar VARCHAR(255) DEFAULT '/static-person/default-avatar.png',
+data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP );
+
+
 
 após psql ser acessado, para criar o banco de dados e 

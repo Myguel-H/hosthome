@@ -1,6 +1,6 @@
 <?php
 $user_type = $_SESSION['user'];
-$type = $_SESSION['type'] ?? 'comum';
+$type = $_SESSION['type'] ?? 'admin';
 ?>
 
 <!DOCTYPE html>
@@ -72,22 +72,23 @@ $type = $_SESSION['type'] ?? 'comum';
             </thead>
             <tbody>
                 <?php
-                $users = [
-                    ["id" => 1, "name" => "Myguel", "email" => "myguel@henry.com"],
-                    ["id" => 2, "name" => "Myguel", "email" => "myguel@henry.com"],
-                    ["id" => 3, "name" => "Myguel", "email" => "myguel@henry.com"]
-                ];
-                foreach ($user as $row) {
-                    echo "<tr>";
-                    echo "<td>" . $linha['id'] . "</td>";
-                    echo "<td>" . htmlspecialchars($linha['name']) . "</td>";
-                    echo "<td>" . htmlspecialchars($linha['email']) . "</td>";
-                    echo "</tr>";
-                }
-                ?>
+                require_once '../config.php'; //faz uma requisição no config.php
+                
+                $stmt = $pdo->query("SELECT id, name, email FROM users");
+                $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                foreach ($users as $row):
+                    ?>
+                    <tr>
+                        <td><?= $row['id'] ?></td>
+                        <td><?= htmlspecialchars($row['name']) ?></td>
+                        <td><?= htmlspecialchars($row['email']) ?></td>
+                    </tr>
+                <?php endforeach; ?>
             </tbody>
         </table>
     </div>
+
 
     <!--Tabela publicações-->
     <div class="publication-list">
@@ -97,29 +98,35 @@ $type = $_SESSION['type'] ?? 'comum';
                     <th>ID</th>
                     <th>Título</th>
                     <th>Sobre</th>
+                    <th>Criador</th>
+                    <th>Categoria</th>
+                    <th>Conteúdo</th>
+                    <th>Data da criação</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                $publication = [
-                    ["id" => 1, "title" => "Algo", "sobre" => "algo"],
-                    ["id" => 2, "title" => "algo2", "sobre" => "algo"],
-                    ["id" => 3, "title" => "algo3", "sobre" => "algo"]
-                ];
-                foreach ($user as $row) {
-                    echo "<tr>";
-                    echo "<td>" . $linha['id'] . "</td>";
-                    echo "<td>" . htmlspecialchars($linha['title']) . "</td>";
-                    echo "<td>" . htmlspecialchars($linha['sobre']) . "</td>";
-                    echo "</tr>";
-                }
-                ?>
+                require_once '../config.php';
+
+                $stmt = $pdo->query("SELECT id, title, about, user_id, category_id, content, creation_date FROM publication");
+                $publication = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+                foreach ($publication as $row):
+                    ?>
+                    <tr>
+                        <td><?= $row['id'] ?></td>
+                        <td><?= htmlspecialchars($row['title']) ?></td>
+                        <td><?= htmlspecialchars($row['about']) ?></td>
+                        <td><?= htmlspecialchars($row['user_id']) ?></td>
+                        <td><?= htmlspecialchars($row['category_id']) ?></td>
+                        <td><?= htmlspecialchars($row['content']) ?></td>
+                        <td><?= htmlspecialchars($row['creation_date']) ?></td>
+                    </tr>;
+                <?php endforeach; ?>
             </tbody>
         </table>
     </div>
-
-
-
 
     <div class="btn-publi">
         <a href="#">Criar Publicação</a>
