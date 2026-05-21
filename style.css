@@ -615,3 +615,147 @@ header {
     width: 16px;
     height: 16px;
 }
+
+/* ======================== USER LIST & PUBLICATION LIST ======================== */
+.user-list,
+.publication-list {
+    width: calc(100% - 320px);
+    max-width: 1200px;
+    margin: 0;
+    padding: 0 2vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 180px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 100;
+}
+
+.user-list {
+    top: 180px;
+}
+
+.publication-list {
+    top: calc(180px + 48vh);
+}
+
+.user-list table,
+.publication-list table {
+    width: 100%;
+    min-width: 300px;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border: 1px solid #e8e8e8;
+    border-radius: 18px;
+    overflow-y: auto;
+    box-shadow: 0 24px 60px rgba(15, 15, 15, 0.1);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    max-height: 50vh;
+}
+
+.publication-list table {
+    max-height: 50vh;
+}
+
+.user-list thead,
+.publication-list thead {
+    background: linear-gradient(135deg, #f8f9fa 0%, #f0f2f5 100%);
+    border-bottom: 2px solid #e8e8e8;
+}
+
+.user-list th,
+.publication-list th {
+    padding: 18px 16px;
+    text-align: left;
+    font-weight: 600;
+    color: #0f0f0f;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    font-size: 0.92rem;
+}
+
+.user-list tbody tr,
+.publication-list tbody tr {
+    border-bottom: 1px solid #f0f0f0;
+    transition: background-color 0.25s ease, transform 0.2s ease;
+    position: relative;
+}
+
+.user-list tbody tr:hover,
+.publication-list tbody tr:hover {
+    background-color: #fafbfc;
+}
+
+.user-list tbody tr:last-child,
+.publication-list tbody tr:last-child {
+    border-bottom: none;
+}
+
+.user-list td,
+.publication-list td {
+    padding: 16px;
+    color: #4f4f4f;
+    word-break: break-word;
+    max-width: 250px;
+}
+
+.user-list td:first-child,
+.publication-list td:first-child {
+    color: #7f7f7f;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.publication-list td:nth-child(6),
+.publication-list td:nth-child(7) {
+    max-width: 200px;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 1024px) {
+    .user-list table,
+    .publication-list table {
+        font-size: 0.9rem;
+    }
+
+    .user-list th,
+    .publication-list th {
+        padding: 14px 12px;
+        font-size: 0.88rem;
+    }
+
+    .user-list td,
+    .publication-list td {
+        padding: 12px;
+        max-width: 180px;
+    }
+}
+
+@media (max-width: 768px) {
+    .user-list,
+    .publication-list {
+        margin: 30px auto;
+    }
+
+    .user-list table,
+    .publication-list table {
+        font-size: 0.85rem;
+    }
+
+    .user-list th,
+    .publication-list th {
+        padding: 12px 10px;
+        font-size: 0.8rem;
+    }
+
+    .user-list td,
+    .publication-list td {
+        padding: 10px;
+        max-width: 120px;
+    }
+}
