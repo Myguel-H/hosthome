@@ -759,3 +759,218 @@ header {
         max-width: 120px;
     }
 }
+
+/* ======================== LOGIN & REGISTER PAGES ======================== */
+.container-account {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 20px;
+    font-family: 'Inter', sans-serif;
+}
+
+.account-box {
+    background-color: #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 24px 60px rgba(15, 15, 15, 0.15);
+    padding: 48px 40px;
+    width: 100%;
+    max-width: 420px;
+    animation: slideIn 0.4s ease-out;
+}
+.account-box h2 {
+    color: #0f0f0f;
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 0 24px 0;
+    text-align: center;
+    letter-spacing: -0.5px;
+}
+
+/* Mensagens de erro e sucesso */
+.error {
+    background-color: #fee;
+    border: 1px solid #fcc;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 24px;
+    color: #c33;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-align: center;
+    animation: slideDown 0.3s ease-out;
+}
+
+.error.success {
+    background-color: #efe;
+    border: 1px solid #cfc;
+    color: #3c3;
+}
+
+/* Formulário */
+.form-box {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-group label {
+    color: #2b2b2b;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: capitalize;
+}
+
+.input-group input {
+    padding: 12px 16px;
+    border: 1.5px solid #d5d5d5;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s ease;
+    background-color: #fafbfc;
+    color: #0f0f0f;
+}
+
+.input-group input:hover {
+    border-color: #b0b0b0;
+    background-color: #ffffff;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #ff6b6b;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.12);
+}
+
+.input-group input::placeholder {
+    color: #a0a0a0;
+}
+
+/* Botão de envio */
+.btn {
+    padding: 14px 24px;
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff5252 100%);
+    border: none;
+    border-radius: 12px;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: capitalize;
+    letter-spacing: 0.02em;
+    margin-top: 8px;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(255, 107, 107, 0.3);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: 0 6px 12px rgba(255, 107, 107, 0.2);
+}
+
+.btn:disabled {
+    background: #d0d0d0;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Link para cadastro/login */
+.link-account {
+    text-align: center;
+    color: #7f7f7f;
+    font-size: 0.95rem;
+    margin-top: 24px;
+    animation: fadeIn 0.5s ease-out 0.2s both;
+}
+
+.link-account a {
+    color: #ff6b6b;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.link-account a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #ff6b6b;
+    transition: width 0.3s ease;
+}
+
+.link-account a:hover {
+    color: #ff5252;
+}
+
+.link-account a:hover::after {
+    width: 100%;
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+    .container-account {
+        padding: 20px 12px;
+        min-height: 100vh;
+    }
+
+    .account-box {
+        padding: 32px 24px;
+        max-width: 100%;
+        border-radius: 20px;
+    }
+
+    .account-box h2 {
+        font-size: 1.6rem;
+        margin-bottom: 20px;
+    }
+
+    .input-group input {
+        padding: 11px 14px;
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        padding: 12px 20px;
+        font-size: 0.95rem;
+    }
+
+    .form-box {
+        gap: 16px;
+    }
+
+    .link-account {
+        font-size: 0.9rem;
+        margin-top: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    .account-box {
+        max-width: 100%;
+        padding: 40px 32px;
+    }
+
+    .account-box h2 {
+        font-size: 1.8rem;
+    }
+}
