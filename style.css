@@ -91,6 +91,7 @@ header {
     display: flex;
     list-style: none;
     gap: 30px;
+    margin-right: 40px;
 }
 
 .menu li a {
@@ -250,6 +251,7 @@ header {
 .sidebar-down-header a:hover {
     color: #ff6b6b;
     font-weight: 600;
+    transform: translateY(-3px);
 }
 
 /* ======================== MAIN WRAPPER ======================== */
@@ -685,6 +687,9 @@ header {
 .publication-list thead {
     background: linear-gradient(135deg, #f8f9fa 0%, #f0f2f5 100%);
     border-bottom: 2px solid #e8e8e8;
+    display: table;
+    width: 100%;
+    table-layout: fixed;
 }
 
 .user-list th,
@@ -708,12 +713,22 @@ header {
     border-bottom: 1px solid #f0f0f0;
     transition: background-color 0.25s ease, transform 0.2s ease;
     position: relative;
+    display:table;
+    width: 100%;
+    table-layout: fixed;
 }
 
+/* Apenas publication-list com altura fixa */
 .publication-list tbody tr {
-    height: 100px;
-    max-height: 100px;
-    white-space: nowrap;
+    height: 50px !important;
+    max-height: 50px !important;
+}
+
+.user-list tbody,
+.publication-list tbody {
+    display: block;
+    max-height: calc(10 * 50px);
+    overflow-y: auto;
 }
 
 .user-list tbody tr:hover,
@@ -751,6 +766,8 @@ header {
 .publication-list td:nth-child(6),
 .publication-list td:nth-child(7) {
     max-width: 350px;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 /* Responsividade para telas menores */

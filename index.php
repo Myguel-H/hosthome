@@ -27,6 +27,7 @@
           <li><a href="/teste.html">Início</a></li>
           <li><a href="#">Publicações</a></li>
           <li><a href="#">Tags</a></li>
+          <li><a href="/pages/admin.php">Admin</a></li>
         </ul>
       </nav>
 
