@@ -1,8 +1,3 @@
-<?php
-$user_type = $_SESSION['user'];
-$type = $_SESSION['type'] ?? 'admin';
-?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -68,13 +63,14 @@ $type = $_SESSION['type'] ?? 'admin';
                     <th>ID</th>
                     <th>Usuário</th>
                     <th>E-mail</th>
+                    <th>Telefone</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
                 require_once '../config.php'; //faz uma requisição no config.php
                 
-                $stmt = $pdo->query("SELECT id, name, email FROM users");
+                $stmt = $pdo->query("SELECT id, name, email, phone FROM users");
                 $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 foreach ($users as $row):
@@ -82,8 +78,10 @@ $type = $_SESSION['type'] ?? 'admin';
                     <tr>
                         <td><?= $row['id'] ?></td>
                         <td><?= htmlspecialchars($row['name']) ?></td>
-                        <td><?= htmlspecialchars($row['email']) ?></td>
+                        <td><?= htmlspecialchars($row['email'])?></td>
+                        <td><?= htmlspecialchars($row['phone'])?></td>
                     </tr>
+
                 <?php endforeach; ?>
             </tbody>
         </table>
@@ -108,7 +106,19 @@ $type = $_SESSION['type'] ?? 'admin';
                 <?php
                 require_once '../config.php';
 
-                $stmt = $pdo->query("SELECT id, title, about, user_id, category_id, content, creation_date FROM publication");
+                $stmt = $pdo->query("
+    SELECT 
+        p.id, 
+        p.title, 
+        p.about, 
+        u.name as create, 
+        c.name as category, 
+        p.content, 
+        p.creation_date
+    FROM publication p 
+    JOIN users u ON p.user_id = u.id 
+    JOIN category c ON p.category_id = c.id
+");
                 $publication = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
@@ -118,11 +128,11 @@ $type = $_SESSION['type'] ?? 'admin';
                         <td><?= $row['id'] ?></td>
                         <td><?= htmlspecialchars($row['title']) ?></td>
                         <td><?= htmlspecialchars($row['about']) ?></td>
-                        <td><?= htmlspecialchars($row['user_id']) ?></td>
-                        <td><?= htmlspecialchars($row['category_id']) ?></td>
+                        <td><?= htmlspecialchars($row['create']) ?></td>
+                        <td><?= htmlspecialchars($row['category']) ?></td>
                         <td><?= htmlspecialchars($row['content']) ?></td>
                         <td><?= htmlspecialchars($row['creation_date']) ?></td>
-                    </tr>;
+                    </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
