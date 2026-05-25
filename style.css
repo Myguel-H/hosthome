@@ -91,6 +91,7 @@ header {
     display: flex;
     list-style: none;
     gap: 30px;
+    margin-right: 40px;
 }
 
 .menu li a {
@@ -188,20 +189,23 @@ header {
     background-color: #ffffff;
     border-collapse: separate;
     border-spacing: 0;
-    width: 100vw;
-    margin: 40px 0 0 calc(-50vw + 50%);
-    padding: 0;
+    width: 100%;
+    max-width: 100%;
+    margin: 40px 0 0 0;
+    padding: 0 2vw;
 }
 
 .sidebar-down-header tbody tr {
     display: flex;
+    flex-wrap: wrap;
     width: 100%;
     gap: 10px;
-    padding: 0 2vw;
+    padding: 0;
 }
 
 .sidebar-down-header td {
-    flex: 1;
+    flex: 1 1 180px;
+    min-width: 140px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -247,6 +251,7 @@ header {
 .sidebar-down-header a:hover {
     color: #ff6b6b;
     font-weight: 600;
+    transform: translateY(-3px);
 }
 
 /* ======================== MAIN WRAPPER ======================== */
@@ -267,17 +272,48 @@ header {
 
 /* ======================== PROFILE SIDEBAR ======================== */
 .sidebar-lateral {
-    width: 280px;
-    min-width: 260px;
+    width: 100%;
+    max-width: 320px;
     background-color: #ffffff;
     border: 1px solid #e6e6e6;
     border-radius: 28px;
     padding: 26px 22px;
-    margin: 32px 2vw 32px 2vw;
+    margin: 32px 2vw;
     box-shadow: 0 24px 60px rgba(15, 15, 15, 0.08);
-    position: sticky;
-    top: 24px;
+    position: relative;
+    top: auto;
     align-self: flex-start;
+}
+
+@media (min-width: 1100px) {
+    .sidebar-lateral {
+        float: left;
+        width: 320px;
+        max-width: 320px;
+        margin: 32px 24px 32px 2vw;
+    }
+
+    .user-list,
+    .publication-list {
+        float: none;
+        width: calc(100% - 384px);
+        max-width: calc(100% - 384px);
+        margin: 40px 0 40px 364px;
+    }
+}
+
+@media (max-width: 1100px) {
+    .sidebar-lateral {
+        float: none;
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .user-list,
+    .publication-list {
+        margin-left: 0;
+        width: min(100%, 1180px);
+    }
 }
 
 .sidebar-actions {
@@ -289,6 +325,7 @@ header {
 }
 
 .sidebar-actions h3 {
+    text-align: center;
     margin: 0;
     padding-bottom: 10px;
     font-size: 0.92rem;
@@ -300,11 +337,7 @@ header {
 
 .sidebar-actions h3:nth-child(1) {
     border-bottom: 4px solid transparent;
-    border-image: linear-gradient(to right,
-            #C60B4F,
-            #8B0D57,
-            #5D0A62,
-            #550A5F) 1;
+    border-image: linear-gradient(to right, #C60B4F, #8B0D57, #5D0A62, #550A5F) 1;
 }
 
 .sidebar-actions li a {
@@ -337,6 +370,8 @@ header {
 
 .sidebar-actions li+h3 {
     margin-top: 24px;
+    border-bottom: 4px solid transparent;
+    border-image: linear-gradient(to right, #C60B4F, #8B0D57, #5D0A62, #550A5F) 1;
 }
 
 
@@ -375,12 +410,7 @@ header {
 
 .btn-publi a:nth-child(1) {
     border-top: 4px solid transparent;
-
-    border-image: linear-gradient(to right,
-            #C60B4F,
-            #8B0D57,
-            #5D0A62,
-            #550A5F) 1;
+    border-image: linear-gradient(to right, #C60B4F, #8B0D57, #5D0A62, #550A5F) 1;
 }
 
 .btn-publi a:hover {
@@ -619,53 +649,47 @@ header {
 /* ======================== USER LIST & PUBLICATION LIST ======================== */
 .user-list,
 .publication-list {
-    width: calc(100% - 320px);
-    max-width: 1200px;
-    margin: 0;
-    padding: 0 2vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 180px;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    z-index: 100;
-}
-
-.user-list {
-    top: 180px;
-}
-
-.publication-list {
-    top: calc(180px + 48vh);
+    display: block;
+    width: min(100%, 1180px);
+    max-width: 1180px;
+    margin: 40px auto 40px;
+    padding: 0 1rem;
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    z-index: 1;
 }
 
 .user-list table,
 .publication-list table {
+    display: table;
     width: 100%;
-    min-width: 300px;
+    min-width: 720px;
+    max-width: 100%;
     border-collapse: collapse;
     background-color: #ffffff;
     border: 1px solid #e8e8e8;
     border-radius: 18px;
-    overflow-y: auto;
+    overflow-x: auto;
+    overflow-y: visible;
     box-shadow: 0 24px 60px rgba(15, 15, 15, 0.1);
     font-family: 'Inter', sans-serif;
     font-size: 0.95rem;
-    max-height: 50vh;
 }
 
 .publication-list table {
     max-height: 50vh;
+    table-layout: fixed;
 }
 
 .user-list thead,
 .publication-list thead {
     background: linear-gradient(135deg, #f8f9fa 0%, #f0f2f5 100%);
     border-bottom: 2px solid #e8e8e8;
+    display: table;
+    width: 100%;
+    table-layout: fixed;
 }
 
 .user-list th,
@@ -679,11 +703,32 @@ header {
     font-size: 0.92rem;
 }
 
+.publication-list th:first-child {
+    width: 50px;
+    max-width: 50px;
+}
+
 .user-list tbody tr,
 .publication-list tbody tr {
     border-bottom: 1px solid #f0f0f0;
     transition: background-color 0.25s ease, transform 0.2s ease;
     position: relative;
+    display:table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+/* Apenas publication-list com altura fixa */
+.publication-list tbody tr {
+    height: 50px !important;
+    max-height: 50px !important;
+}
+
+.user-list tbody,
+.publication-list tbody {
+    display: block;
+    max-height: calc(10 * 50px);
+    overflow-y: auto;
 }
 
 .user-list tbody tr:hover,
@@ -702,6 +747,8 @@ header {
     color: #4f4f4f;
     word-break: break-word;
     max-width: 250px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .user-list td:first-child,
@@ -711,9 +758,16 @@ header {
     font-size: 0.9rem;
 }
 
+.publication-list td:first-child {
+    width: 50px;
+    max-width: 50px;
+}
+
 .publication-list td:nth-child(6),
 .publication-list td:nth-child(7) {
-    max-width: 200px;
+    max-width: 350px;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 /* Responsividade para telas menores */
@@ -733,6 +787,171 @@ header {
     .publication-list td {
         padding: 12px;
         max-width: 180px;
+    }
+}
+
+@media (max-width: 1200px) {
+    header {
+        flex-wrap: wrap;
+        padding: 12px 1.5rem;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .header-actions {
+        flex: 1 1 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .menu {
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .search-container {
+        width: 100%;
+        margin-left: 0;
+        padding-left: 0;
+        border-left: none;
+    }
+
+    .menu-body {
+        padding: 20px 1.5rem;
+    }
+
+    .main-wrapper {
+        padding: 0 1.5rem;
+        gap: 18px;
+    }
+
+    .sidebar-lateral {
+        margin: 24px 0;
+        max-width: 100%;
+    }
+
+    .btn-publi {
+        right: 1.5rem;
+        bottom: 6rem;
+        width: 190px;
+    }
+}
+
+@media (max-width: 992px) {
+    .sidebar-down-header {
+        padding: 0 1rem;
+    }
+
+    .sidebar-down-header tbody tr {
+        gap: 8px;
+    }
+
+    .sidebar-down-header td {
+        flex: 1 1 45%;
+        min-width: 140px;
+        padding: 10px 0;
+    }
+
+    .description-linux,
+    .notice-container,
+    .footer-container,
+    .content {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .logo-name {
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .header-actions {
+        align-items: stretch;
+    }
+
+    .menu {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .search-container {
+        width: 100%;
+        margin: 0;
+        padding-left: 0;
+        border-left: none;
+    }
+
+    .main-wrapper {
+        flex-direction: column;
+        padding: 0 1rem;
+    }
+
+    .sidebar-lateral {
+        width: 100%;
+        margin: 16px 0;
+    }
+
+    .description-linux {
+        width: 100%;
+        padding: 24px;
+    }
+
+    .content-text {
+        padding: 24px;
+    }
+
+    .btn-publi {
+        right: 1rem;
+        bottom: 4rem;
+        width: auto;
+        min-width: 160px;
+    }
+
+    .publication-list table,
+    .user-list table {
+        min-width: 100%;
+    }
+
+    .publication-list td:nth-child(6),
+    .publication-list td:nth-child(7) {
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 600px) {
+    header {
+        padding: 12px 1rem;
+    }
+
+    .menu {
+        gap: 8px;
+    }
+
+    .menu li a {
+        font-size: 0.95rem;
+    }
+
+    .search-input {
+        width: 100%;
+    }
+
+    .sidebar-down-header td {
+        flex: 1 1 100%;
+    }
+
+    .content-text,
+    .description-linux,
+    .notice-container,
+    .footer-container {
+        padding-left: 1rem;
+        padding-right: 1rem;
     }
 }
 
