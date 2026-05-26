@@ -647,6 +647,7 @@ header {
 }
 
 /* ======================== USER LIST & PUBLICATION LIST ======================== */
+
 .user-list,
 .publication-list {
     display: block;

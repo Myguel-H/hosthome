@@ -11,23 +11,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { //veio metodo POST de outro arquivo 
 
 
 
-        $stmt = $pdo->prepare('SELECT * FROM users WHERE  email = ?'); //prepare o banco de dados
-        $stmt->execute(['$email']); //envia o valor da variavel/percorre o banco
+        $stmt = $pdo->prepare('SELECT * FROM users WHERE email = ?'); //prepare o banco de dados
+        $stmt->execute([$email]); //envia o valor da variavel/percorre o banco
         $user = $stmt->fetch(); //pega o valor (pedro, joao)
 
 
         if ($user && password_verify($password, $user['password'])) {
             $_SESSION['user_id'] = $user['id'];
-            $_SESSION['user_name'] = $user['name'];
-            $_SESSION['user_type'] = $user['type'];
-            header('Location: /pages/admin'); //se os dados tiverem corretos manda para a location
+            $_SESSION['user_email'] = $user['email'];
+            header('Location: /pages/admin.php?registered=1'); //se os dados tiverem corretos manda para a location
             exit();
         } else {
-            header('Location: login.php?error=1'); //dads incorretos, permanecem no login e na url retorna erro
+            header('Location: ../index.php?error=1'); //dads incorretos, permanecem no login e na url retorna erro
             exit();
         }
-    } elseif ($action == 'register') { //Ação para registro de usuario 
-        $name = $_POST['name'] ?? ''; //pega os dados do formulario
+    } 
+
+    if ($action == 'register') { //Ação para registro de usuario 
+        $name = $_POST['name'] ?? '';
         $email = $_POST['email'] ?? '';
         $password = $_POST['password'] ?? '';
 
@@ -36,14 +37,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { //veio metodo POST de outro arquivo 
         try {
             $stmt = $pdo->prepare('INSERT INTO users (name, email, password) VALUES (?, ?, ?)');
             $stmt->execute([$name, $email, $hashPassword]);
-            header('Location: admin.php?registered=1');
+            header('Location: /pages/admin.php?registered=1');
             exit();
         } catch (PDOException $e) {
-            header('Location: register.php?error=1');
+            header('Location: /pages/register.php?error=1');
             exit();
         }
     }
 }
-header('Location: login.php');
+header('Location: /pages/login.php');
 exit();
 ?>

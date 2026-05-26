@@ -64,6 +64,7 @@
                         <th>Usuário</th>
                         <th>E-mail</th>
                         <th>Tipo</th>
+                        <th>Tipo</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -88,6 +89,7 @@
                             <td>
                                 <?= htmlspecialchars($row['type']) ?>
                             </td>
+                            <td>ações</td>
                         </tr>
 
                     <?php endforeach; ?>
@@ -154,6 +156,7 @@
                             <td>
                                 <?= htmlspecialchars($row['creation_date']) ?>
                             </td>
+                            
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

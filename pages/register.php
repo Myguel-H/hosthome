@@ -1,11 +1,3 @@
-<?php
-session_start();
-if (isset($_SESSION['user_id'])) {
-    header("Location: comum.php");
-} elseif (isset($_SESSION['admin_id'])) {
-    header("Location: admin.php");
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,8 +20,13 @@ if (isset($_SESSION['user_id'])) {
             <?php if (isset($GET['registered'])): ?>
                 <div class="error">Registrado com sucesso !</div>
             <?php endif; ?>
-            <form action="auth.php" class="form-box" method="POST">
-                <input type="hidden" name="action" value="login">
+
+            <form action="../auth.php" class="form-box" method="POST">
+                <input type="hidden" name="action" value="register">
+                <div class="input-group">
+                    <label for="name">Name</label>
+                    <input type="name" name="name" required>
+                </div>
                 <div class="input-group">
                     <label for="email">Email</label>
                     <input type="email" name="email" required>
@@ -41,7 +38,7 @@ if (isset($_SESSION['user_id'])) {
                 <button class="btn" type="submit">Registrar-se</button>
             </form>
         </div>
-        <p class="link-account">Ja possui conta ? <a href="#">Logue-se aqui</a></p>
+        <p class="link-account">Ja possui conta ? <a href="/pages/login.php">Logue-se aqui</a></p>
     </div>
 </body>
 
