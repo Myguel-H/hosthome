@@ -1,8 +1,3 @@
-<?php
-$user_type = $_SESSION['user'];
-$type = $_SESSION['type'] ?? 'comum';
-?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -32,9 +27,6 @@ $type = $_SESSION['type'] ?? 'comum';
                     <li><a href="/teste.html">Início</a></li>
                     <li><a href="#">Publicações</a></li>
                     <li><a href="#">Tags</a></li>
-                    <?php if ($type == 'admin'): ?>
-                        <li><a href="/pages/admin.php">Admin</a></li>
-                    <?php endif; ?>
                 </ul>
             </nav>
 
@@ -62,7 +54,42 @@ $type = $_SESSION['type'] ?? 'comum';
         </nav>
     </div>
 
+    <div class="profile-user">
+        <div class="data-user">
+            <?php
+            require_once '../config.php';
+            session_start();
 
+            $user_id = $_SESSION['user_id'] ?? 0;
+
+            if ($user_id > 0) {
+
+                $stmt = $pdo->prepare("SELECT name, email, age, sex, phone, avatar, data_cadastro, type FROM users WHERE id = ?");
+                $stmt->execute([$user_id]);
+                $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                if ($user) {
+                    ?>
+
+            <img class="img-user" src="../static/user.png" alt="avatar">
+
+
+            <p><strong>Nome:</strong> <?= htmlspecialchars($user['name']) ?><button><img src="../static/botão-editar" alt="icone-editar"></button></p>
+                    <p><strong>Email:</strong> <?= htmlspecialchars($user['email']) ?><button><img src="../static/botão-editar" alt="icone-editar"></button></p>
+                    <p><strong>Idade:</strong> <?= htmlspecialchars($user['age']) ?><button><img src="../static/botão-editar" alt="icone-editar"></button></p>
+                    <p><strong>Sexo:</strong> <?= htmlspecialchars($user['sex']) ?><button><img src="../static/botão-editar" alt="icone-editar"></button></p>
+                    <p><strong>Telefone:</strong> <?= htmlspecialchars($user['phone']) ?><button><img src="../static/botão-editar" alt="icone-editar"></button></p>
+                    <p><strong>Cadastro:</strong> <?= date('d/m/Y', strtotime($user['data_cadastro'])) ?><button><img src="../static/botão-editar" alt="icone-editar"></button></p>
+                    <p><strong>Tipo:</strong> <?= htmlspecialchars($user['type']) ?><button><img src="../static/botão-editar" alt="icone-editar"></button></p>
+
+            <?php } else {
+                    echo "<p>USUARIO NAO ECONTRADO</p>";
+                }
+            } else {
+                echo "<p>VOCA NAO TA LOGADO</p>";
+            } ?>
+        </div>
+    </div>
 
     <div class="btn-publi">
         <a href="#">Criar Publicação</a>

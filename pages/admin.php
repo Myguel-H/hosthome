@@ -27,6 +27,7 @@
                     <li><a href="#">Início</a></li>
                     <li><a href="#">Publicações</a></li>
                     <li><a href="#">Usuários</a></li>
+                    <li><a href="/pages/profile.php">Perfil</a></li>
                     <li><a href="../index.php">Sair</a></li>
                 </ul>
             </nav>
@@ -156,7 +157,7 @@
                             <td>
                                 <?= htmlspecialchars($row['creation_date']) ?>
                             </td>
-                            
+
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

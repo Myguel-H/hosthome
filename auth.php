@@ -19,10 +19,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { //veio metodo POST de outro arquivo 
         if ($user && password_verify($password, $user['password'])) {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_email'] = $user['email'];
-            header('Location: /pages/admin.php?registered=1'); //se os dados tiverem corretos manda para a location
+            header('Location: /pages/profile.php?logado'); //se os dados tiverem corretos manda para a location
             exit();
         } else {
-            header('Location: ../index.php?error=1'); //dads incorretos, permanecem no login e na url retorna erro
+            header('Location: /pages/login.php?error=1'); //dads incorretos, permanecem no login e na url retorna erro
             exit();
         }
     } 
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { //veio metodo POST de outro arquivo 
         try {
             $stmt = $pdo->prepare('INSERT INTO users (name, email, password) VALUES (?, ?, ?)');
             $stmt->execute([$name, $email, $hashPassword]);
-            header('Location: /pages/admin.php?registered=1');
+            header('Location: /pages/login.php?registered=1');
             exit();
         } catch (PDOException $e) {
             header('Location: /pages/register.php?error=1');

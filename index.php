@@ -15,7 +15,7 @@
   <header>
     <div class="logo-name">
       <img class="logo-icon" src="/static/logohosthome.webp" alt="Logo">
-      <a href="">
+      <a href="/index.php">
         <h2>HomeHost</h2>
       </a>
     </div>
@@ -27,14 +27,13 @@
           <li><a href="/teste.html">Início</a></li>
           <li><a href="#">Publicações</a></li>
           <li><a href="#">Tags</a></li>
-          <li><a href="/pages/admin.php">Admin</a></li>
         </ul>
       </nav>
 
       <!--Icone de person-->
       <div class="person-icon"></div>
       <button class="btn-login" id="menu">
-        <a href="/pages/profile.php">
+        <a href="/pages/login.php">
           <img src="/static/person-icon.png" alt="icon-login">
         </a>
       </button>
