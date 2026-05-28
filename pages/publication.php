@@ -25,8 +25,8 @@
             <nav>
                 <ul class="menu">
                     <li><a href="/teste.html">Início</a></li>
-                    <li><a href="#">Publicações</a></li>
                     <li><a href="#">Tags</a></li>
+                    <li><a href="../index.php">Sair</a></li>
                 </ul>
             </nav>
 
@@ -37,7 +37,6 @@
             </button>
         </div>
     </header>
-
     <!------------------------- B    O    D    Y --------------------------->
 
     <div class="sidebar-lateral">
@@ -54,41 +53,61 @@
         </nav>
     </div>
 
-    <div class="profile-user">
-        <div class="data-user">
-            <?php
-            require_once '../config.php';
-            session_start();
+    <div class="add-publication">
+        <?php
+        require_once '../config.php';
+        session_start();
 
-            $user_id = $_SESSION['user_id'] ?? 0;
+        $user_id = $_SESSION['user_id'] ?? 0;
 
-            if ($user_id > 0) {
+        if ($user_id > 0) {
 
-                $stmt = $pdo->prepare("SELECT name, email, age, sex, phone, avatar, data_cadastro, type FROM users WHERE id = ?");
-                $stmt->execute([$user_id]);
-                $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            $stmt = $pdo->prepare("SELECT title, resume, about, user_id, category_id, content, creation_date FROM publication");
+            $stmt->execute();
+            $publications = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-                if ($user) {
+            if (count($publications) > 0) {
+                foreach ($publications as $pub) {
                     ?>
+        <div class="pub-itens">
+            <p><strong>Titulo</strong>
+                <?= htmlspecialchars($pub['title']) ?>
+            </p>
 
-                    <img class="img-user" src="../static/user.png" alt="avatar">
+            <p><strong>Resumo</strong>
+                <?= htmlspecialchars($pub['resume']) ?>
+            </p>
 
+            <p><strong>Sobre</strong>
+                <?= htmlspecialchars($pub['about']) ?>
+            </p>
 
-                    <p><strong>Nome:</strong> <?= htmlspecialchars($user['name']) ?><button><img src="../static/botão-editar" alt="Editar"></button></p>
-                    <p><strong>Email:</strong> <?= htmlspecialchars($user['email']) ?><button><img src="../static/botão-editar" alt="Editar"></button></p>
-                    <p><strong>Idade:</strong> <?= htmlspecialchars($user['age']) ?><button><img src="../static/botão-editar" alt="Editar"></button></p>
-                    <p><strong>Sexo:</strong> <?= htmlspecialchars($user['sex']) ?><button><img src="../static/botão-editar" alt="Editar"></button></p>
-                    <p><strong>Telefone:</strong> <?= htmlspecialchars('(dd) dddd-dddd', $user['phone']) ?><button><img src="../static/botão-editar" alt="Editar"></button></p>
-                    <p><strong>Cadastro:</strong> <?= date('d/m/Y', strtotime($user['data_cadastro'])) ?><button><img src="../static/botão-editar" alt="Editar"></button></p>
-                    <p><strong>Tipo:</strong> <?= htmlspecialchars($user['type']) ?><button><img src="../static/botão-editar" alt="Editar"></button></p>
+            <p><strong>Criador</strong>
+                <?= htmlspecialchars($pub['user_id']) ?>
+            </p>
 
-            <?php } else {
-                    echo "<p>USUARIO NAO ECONTRADO</p>";
+            <p><strong>Categoria</strong>
+                <?= htmlspecialchars($pub['category_id']) ?>
+            </p>
+
+            <p><strong>Conteudo</strong>
+                <?= htmlspecialchars($pub['content']) ?>
+            </p>
+
+            <p><strong>Cadastro:</strong>
+                <?= date('d/m/Y', strtotime($pub['creation_date'])) ?>
+            </p>
+
+        </div>
+        <?php
                 }
             } else {
-                echo "<p>VOCA NAO TA LOGADO</p>";
-            } ?>
-        </div>
+                echo "<p>erro de dados</p>";
+            }
+        } else {
+            echo "<p>ta logado nao</p>";
+        } ?>
+
     </div>
 
     <div class="btn-publi">

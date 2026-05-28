@@ -25,7 +25,7 @@
             <nav>
                 <ul class="menu">
                     <li><a href="#">Início</a></li>
-                    <li><a href="#">Publicações</a></li>
+                    <li><a href="/pages/publication.php">Publicações</a></li>
                     <li><a href="#">Usuários</a></li>
                     <li><a href="/pages/profile.php">Perfil</a></li>
                     <li><a href="../index.php">Sair</a></li>
@@ -164,13 +164,6 @@
             </table>
         </div>
     </div>
-
-
-
-    <div class="btn-publi">
-        <a href="#">Criar Publicação</a>
-    </div>
-
 
     <!------------------------- F    O    O    T    E    R --------------------------->
 
