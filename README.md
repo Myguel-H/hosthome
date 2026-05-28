@@ -53,3 +53,47 @@ O projeto segue o padrão MVC, separando responsabilidades entre:
 - **Controller** → Responsável por intermediar as requisições entre Model e View.
 
 Essa separação torna o projeto mais organizado, escalável e de fácil manutenção.
+
+
+
+                                                      Tabela "public.users"
+    Coluna     |            Tipo             | Ordenação | Pode ser nulo |                         Padrão                         
+---------------+-----------------------------+-----------+---------------+--------------------------------------------------------
+ id            | integer                     |           | not null      | nextval('users_id_seq'::regclass)
+ name          | character varying(100)      |           |               | 
+ age           | character varying(30)       |           |               | 
+ sex           | character varying(10)       |           |               | 
+ phone         | character varying(16)       |           |               | 
+ email         | character varying(45)       |           | not null      | 
+ type          | character varying(20)       |           |               | 'comum'::character varying
+ avatar        | character varying(255)      |           |               | '/static-person/default-avatar.png'::character varying
+ data_cadastro | timestamp without time zone |           |               | CURRENT_TIMESTAMP
+ password      | character varying(255)      |           |               | 
+Índices:
+    "users_pkey" PRIMARY KEY, btree (id)
+Referenciada por:
+    TABLE "publication" CONSTRAINT "publication_user_id_fkey" FOREIGN KEY (user_id) REFERENCES users(id)
+
+hosthome_db=# 
+
+
+
+                                            Tabela "public.publication"
+    Coluna     |            Tipo             | Ordenação | Pode ser nulo |                 Padrão                  
+---------------+-----------------------------+-----------+---------------+-----------------------------------------
+ id            | integer                     |           | not null      | nextval('publication_id_seq'::regclass)
+ title         | character varying(100)      |           | not null      | 
+ resume        | text                        |           | not null      | 
+ about         | character varying(250)      |           | not null      | 
+ user_id       | integer                     |           | not null      | 
+ category_id   | integer                     |           | not null      | 
+ creation_date | timestamp without time zone |           |               | CURRENT_TIMESTAMP
+ content       | text                        |           |               | 
+Índices:
+    "publication_pkey" PRIMARY KEY, btree (id)
+Restrições de chave estrangeira:
+    "publication_category_id_fkey" FOREIGN KEY (category_id) REFERENCES category(id)
+    "publication_user_id_fkey" FOREIGN KEY (user_id) REFERENCES users(id)
+
+hosthome_db=# 
+
