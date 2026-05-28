@@ -54,7 +54,6 @@
     </div>
 
     <div class="add-publication">
-        <h2>Inserir publicação</h2>
         <form action="../create_post.php" method="POST">
             <input type="hidden" name="action" value="publish">
             <div class="insert-publication">
@@ -62,10 +61,10 @@
                 <input type="text" name="title" required="required">
 
                 <label for="resume">Resumo</label>
-                <input type="text" name="resume" required="required">
+                <textarea name="resume" required="required" placeholder="Digite um breve resumo da publicação..."></textarea>
 
                 <label for="about">Sobre</label>
-                <input type="text" name="about" required="required">
+                <textarea name="about" rows="3" required="required" placeholder="Informações adicionais sobre o tema..."></textarea>
 
                 <label for="user_id">Criador</label>
                 <input type="number" name="user_id" required="required">
@@ -73,8 +72,8 @@
                 <label for="category_id">Categorias</label>
                 <input type="number" name="category_id" required="required">
 
-                <label for="content">Conteudo</label>
-                <input type="text" name="content" required="required">
+                <label for="content">Conteúdo</label>
+                <textarea name="content" rows="6" required="required" placeholder="Digite o conteúdo completo do artigo..."></textarea>
             </div>
             <button class="btn" type="submit">Publicar</button>
         </form>

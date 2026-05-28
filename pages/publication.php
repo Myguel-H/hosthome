@@ -67,6 +67,9 @@
             $publications = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             if (count($publications) > 0) {
+                ?>
+        <div class="pub-container">
+            <?php
                 foreach ($publications as $pub) {
                     ?>
         <div class="pub-itens">
@@ -101,11 +104,14 @@
         </div>
         <?php
                 }
+            ?>
+        </div>
+        <?php
             } else {
-                echo "<p>erro de dados</p>";
+                echo "<p>Nenhuma publicação encontrada</p></div>";
             }
         } else {
-            echo "<p>ta logado nao</p>";
+            echo "<p>Por favor, faça login para visualizar publicações</p>";
         } ?>
 
     </div>

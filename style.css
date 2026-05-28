@@ -1346,3 +1346,405 @@ header {
         font-size: 1.8rem;
     }
 }
+
+/* ======================== PUBLICATION & ADD PUBLICATION PAGES ======================== */
+
+.add-publication {
+    width: 100%;
+    max-width: 1400px;
+    margin: 40px auto;
+    padding: 0 2vw;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+/* ======================== FORM STYLE ======================== */
+
+.add-publication form {
+    background-color: #ffffff;
+    border: 1px solid #e6e6e6;
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 18px 48px rgba(15, 15, 15, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.insert-publication {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.insert-publication label {
+    font-weight: 600;
+    color: #1a1a1a;
+    font-size: 0.98rem;
+    letter-spacing: 0.02em;
+    transition: color 0.2s ease;
+}
+
+.insert-publication input {
+    padding: 12px 16px;
+    border: 1px solid #d5d5d5;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    color: #0f0f0f;
+    background-color: #fafbfc;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.insert-publication input:focus {
+    background-color: #ffffff;
+    border-color: #ff6b6b;
+    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
+}
+
+.insert-publication input:hover:not(:focus) {
+    border-color: #e0e0e0;
+    background-color: #ffffff;
+}
+
+.insert-publication input::placeholder {
+    color: #a8a8a8;
+}
+
+.insert-publication textarea {
+    padding: 12px 16px;
+    border: 1px solid #d5d5d5;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    color: #0f0f0f;
+    background-color: #fafbfc;
+    transition: all 0.3s ease;
+    outline: none;
+    resize: vertical;
+    min-height: 80px;
+    line-height: 1.6;
+}
+
+.insert-publication textarea:focus {
+    background-color: #ffffff;
+    border-color: #ff6b6b;
+    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
+}
+
+.insert-publication textarea:hover:not(:focus) {
+    border-color: #e0e0e0;
+    background-color: #ffffff;
+}
+
+.insert-publication textarea::placeholder {
+    color: #a8a8a8;
+}
+
+/* ======================== BUTTON STYLES ======================== */
+
+.btn {
+    padding: 14px 28px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #C60B4F 0%, #8B0D57 50%, #550A5F 100%);
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 0.02em;
+    box-shadow: 0 8px 24px rgba(198, 11, 79, 0.25);
+    align-self: flex-start;
+    margin-top: 8px;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(198, 11, 79, 0.35);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 16px rgba(198, 11, 79, 0.2);
+}
+
+/* ======================== PUBLICATIONS CONTAINER ======================== */
+
+.pub-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+    width: 100%;
+    animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.pub-itens {
+    background-color: #ffffff;
+    border: 1px solid #e6e6e6;
+    border-radius: 18px;
+    padding: 28px;
+    box-shadow: 0 12px 32px rgba(15, 15, 15, 0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: all 0.3s ease;
+    animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.pub-itens:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 48px rgba(15, 15, 15, 0.12);
+    border-color: #ff6b6b;
+}
+
+.pub-itens p {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 0.95rem;
+    color: #4f4f4f;
+    line-height: 1.6;
+}
+
+.pub-itens p strong {
+    color: #0f0f0f;
+    font-weight: 700;
+    font-size: 0.98rem;
+}
+
+.pub-itens p:first-of-type strong {
+    font-size: 1.15rem;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+}
+
+.pub-itens p:first-of-type {
+    padding-bottom: 12px;
+    border-bottom: 2px solid #f0f0f0;
+    margin-bottom: 4px;
+}
+
+.pub-itens p:last-of-type {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #f5f5f5;
+    color: #7f7f7f;
+    font-size: 0.9rem;
+}
+
+.pub-itens p:last-of-type strong {
+    color: #7f7f7f;
+    font-weight: 600;
+}
+
+/* ======================== CREATE PUBLICATION BUTTON ======================== */
+
+.btn-publi {
+    position: fixed;
+    right: 3.0rem;
+    bottom: 10rem;
+    width: 200px;
+    min-width: 180px;
+    background-color: #ffffff;
+    border: 1px solid #e6e6e6;
+    border-radius: 15px;
+    padding: 10px 08px;
+    margin: 0;
+    box-shadow: 0 24px 60px rgba(15, 15, 15, 0.08);
+    z-index: 100;
+}
+
+.btn-publi a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: #0f0f0f;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    white-space: nowrap;
+    font-family: 'Inter', sans-serif;
+    border-radius: 12px;
+}
+
+.btn-publi a:hover {
+    background: linear-gradient(135deg, rgba(198, 11, 79, 0.1) 0%, rgba(85, 10, 95, 0.1) 100%);
+    color: #ff6b6b;
+    font-weight: 700;
+    transform: translateY(-2px);
+}
+
+/* ======================== RESPONSIVE STYLES ======================== */
+
+@media (max-width: 1200px) {
+    .add-publication {
+        padding: 0 1.5rem;
+    }
+
+    .add-publication form {
+        padding: 32px;
+    }
+
+    .pub-container {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+    }
+
+    .btn-publi {
+        right: 1.5rem;
+        width: 180px;
+    }
+}
+
+@media (max-width: 768px) {
+    .add-publication {
+        padding: 0 1rem;
+        margin: 32px auto;
+        gap: 24px;
+    }
+
+    .add-publication form {
+        padding: 24px;
+        border-radius: 16px;
+    }
+
+    .insert-publication {
+        gap: 14px;
+    }
+
+    .insert-publication label {
+        font-size: 0.92rem;
+    }
+
+    .insert-publication input {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        padding: 12px 24px;
+        font-size: 0.95rem;
+        align-self: stretch;
+    }
+
+    .pub-container {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .pub-itens {
+        padding: 20px;
+        border-radius: 14px;
+    }
+
+    .pub-itens p {
+        font-size: 0.9rem;
+    }
+
+    .pub-itens p strong {
+        font-size: 0.92rem;
+    }
+
+    .btn-publi {
+        position: static;
+        width: 100%;
+        margin: 24px 0;
+        border-radius: 12px;
+    }
+
+    .btn-publi a {
+        padding: 14px 16px;
+        font-size: 1rem;
+    }
+
+    .pub-empty {
+        padding: 40px 24px;
+        border-radius: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .add-publication {
+        padding: 0 0.75rem;
+        margin: 24px auto;
+        gap: 20px;
+    }
+
+    .add-publication form {
+        padding: 20px;
+        border-radius: 12px;
+    }
+
+    .insert-publication {
+        gap: 12px;
+    }
+
+    .insert-publication label {
+        font-size: 0.9rem;
+    }
+
+    .insert-publication input {
+        padding: 10px 10px;
+        font-size: 0.85rem;
+    }
+
+    .btn {
+        padding: 11px 20px;
+        font-size: 0.9rem;
+    }
+
+    .pub-container {
+        gap: 12px;
+    }
+
+    .pub-itens {
+        padding: 16px;
+        border-radius: 12px;
+        gap: 12px;
+    }
+
+    .pub-itens p {
+        font-size: 0.85rem;
+    }
+
+    .pub-itens p strong {
+        font-size: 0.87rem;
+    }
+
+    .pub-empty {
+        padding: 32px 16px;
+        font-size: 0.9rem;
+    }
+}
