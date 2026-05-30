@@ -1352,8 +1352,8 @@ header {
 .add-publication {
     width: 100%;
     max-width: 1400px;
-    margin: 40px auto;
-    padding: 0 2vw;
+    padding-right: 40px; 
+    margin: 35px;
     font-family: 'Inter', sans-serif;
     display: flex;
     flex-direction: column;

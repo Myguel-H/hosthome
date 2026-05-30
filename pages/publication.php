@@ -30,6 +30,7 @@ session_start();
                 <ul class="menu">
                     <li><a href="/teste.html">Início</a></li>
                     <li><a href="#">Tags</a></li>
+                    <li><a href="/pages/addpubli.php">Publicar</a></li>                    
                     <li><a href="../index.php">Sair</a></li>
                 </ul>
             </nav>

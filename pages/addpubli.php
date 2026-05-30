@@ -58,7 +58,7 @@
             <input type="hidden" name="action" value="publish">
             <div class="insert-publication">
                 <label for="title">Titulo</label>
-                <input type="text" name="title" required="required">
+                <input type="text" name="title" required="required" placeholder="Digite um título">
 
                 <label for="resume">Resumo</label>
                 <textarea name="resume" required="required" placeholder="Digite um breve resumo da publicação..."></textarea>
