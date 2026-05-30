@@ -1505,6 +1505,8 @@ header {
     gap: 16px;
     transition: all 0.3s ease;
     animation: slideUp 0.5s ease-out;
+    height: 700px;
+    overflow-y: auto;
 }
 
 @keyframes slideUp {

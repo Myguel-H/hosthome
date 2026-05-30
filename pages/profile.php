@@ -1,3 +1,7 @@
+<?php
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -71,16 +75,32 @@
                 if ($user) {
                     ?>
 
-                    <img class="img-user" src="../static/user.png" alt="avatar">
+            <img class="img-user" src="../static/user.png" alt="avatar">
 
 
-                    <p><strong>Nome:</strong> <?= htmlspecialchars($user['name']) ?><button><img src="../static/botão-editar" alt="Editar"></button></p>
-                    <p><strong>Email:</strong> <?= htmlspecialchars($user['email']) ?><button><img src="../static/botão-editar" alt="Editar"></button></p>
-                    <p><strong>Idade:</strong> <?= htmlspecialchars($user['age']) ?><button><img src="../static/botão-editar" alt="Editar"></button></p>
-                    <p><strong>Sexo:</strong> <?= htmlspecialchars($user['sex']) ?><button><img src="../static/botão-editar" alt="Editar"></button></p>
-                    <p><strong>Telefone:</strong> <?= htmlspecialchars('(dd) dddd-dddd', $user['phone']) ?><button><img src="../static/botão-editar" alt="Editar"></button></p>
-                    <p><strong>Cadastro:</strong> <?= date('d/m/Y', strtotime($user['data_cadastro'])) ?><button><img src="../static/botão-editar" alt="Editar"></button></p>
-                    <p><strong>Tipo:</strong> <?= htmlspecialchars($user['type']) ?><button><img src="../static/botão-editar" alt="Editar"></button></p>
+            <p><strong>Nome:</strong>
+                <?= htmlspecialchars($user['name']) ?><button><img src="../static/botão-editar" alt="Editar"></button>
+            </p>
+            <p><strong>Email:</strong>
+                <?= htmlspecialchars($user['email']) ?><button><img src="../static/botão-editar" alt="Editar"></button>
+            </p>
+            <p><strong>Idade:</strong>
+                <?= htmlspecialchars($user['age']) ?><button><img src="../static/botão-editar" alt="Editar"></button>
+            </p>
+            <p><strong>Sexo:</strong>
+                <?= htmlspecialchars($user['sex']) ?><button><img src="../static/botão-editar" alt="Editar"></button>
+            </p>
+            <p><strong>Telefone:</strong>
+                <?= htmlspecialchars('(dd) dddd-dddd', $user['phone']) ?><button><img src="../static/botão-editar"
+                        alt="Editar"></button>
+            </p>
+            <p><strong>Cadastro:</strong>
+                <?= date('d/m/Y', strtotime($user['data_cadastro'])) ?><button><img src="../static/botão-editar"
+                        alt="Editar"></button>
+            </p>
+            <p><strong>Tipo:</strong>
+                <?= htmlspecialchars($user['type']) ?><button><img src="../static/botão-editar" alt="Editar"></button>
+            </p>
 
             <?php } else {
                     echo "<p>USUARIO NAO ECONTRADO</p>";

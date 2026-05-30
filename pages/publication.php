@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -56,7 +60,6 @@
     <div class="add-publication">
         <?php
         require_once '../config.php';
-        session_start();
 
         $user_id = $_SESSION['user_id'] ?? 0;
 
@@ -70,40 +73,40 @@
                 ?>
         <div class="pub-container">
             <?php
-                foreach ($publications as $pub) {
-                    ?>
-        <div class="pub-itens">
-            <p><strong>Titulo</strong>
-                <?= htmlspecialchars($pub['title']) ?>
-            </p>
+            foreach ($publications as $pub) {
+                ?>
+            <div class="pub-itens">
+                <p><strong>Titulo</strong>
+                    <?= htmlspecialchars($pub['title']) ?>
+                </p>
 
-            <p><strong>Resumo</strong>
-                <?= htmlspecialchars($pub['resume']) ?>
-            </p>
+                <p><strong>Resumo</strong>
+                    <?= htmlspecialchars($pub['resume']) ?>
+                </p>
 
-            <p><strong>Sobre</strong>
-                <?= htmlspecialchars($pub['about']) ?>
-            </p>
+                <p><strong>Sobre</strong>
+                    <?= htmlspecialchars($pub['about']) ?>
+                </p>
 
-            <p><strong>Criador</strong>
-                <?= htmlspecialchars($pub['user_id']) ?>
-            </p>
+                <p><strong>Criador</strong>
+                    <?= htmlspecialchars($pub['user_id']) ?>
+                </p>
 
-            <p><strong>Categoria</strong>
-                <?= htmlspecialchars($pub['category_id']) ?>
-            </p>
+                <p><strong>Categoria</strong>
+                    <?= htmlspecialchars($pub['category_id']) ?>
+                </p>
 
-            <p><strong>Conteudo</strong>
-                <?= htmlspecialchars($pub['content']) ?>
-            </p>
+                <p><strong>Conteudo</strong>
+                    <?= htmlspecialchars($pub['content']) ?>
+                </p>
 
-            <p><strong>Cadastro:</strong>
-                <?= date('d/m/Y', strtotime($pub['creation_date'])) ?>
-            </p>
+                <p><strong>Cadastro:</strong>
+                    <?= date('d/m/Y', strtotime($pub['creation_date'])) ?>
+                </p>
 
-        </div>
-        <?php
-                }
+            </div>
+            <?php
+            }
             ?>
         </div>
         <?php
