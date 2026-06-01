@@ -29,16 +29,19 @@ session_start();
             <!---Menu header-->
             <nav>
                 <ul class="menu">
-                    <li><a href="/teste.html">Início</a></li>
-                    <li><a href="/pages/publication.php">Publicações</a></li>
-                    <li><a href="#">Tags</a></li>
+                    <li><a href="/index.php">Início</a></li>
+                    <li><a href="/pages/publications.php">Publicações</a></li>
+                    <li><a href="/pages/addpubli.php">Publicar</a></li>
+                    <li><a href="../logout.php">Sair</a></li>
                 </ul>
             </nav>
 
             <!--Icone de person-->
             <div class="person-icon"></div>
             <button class="btn-login" id="menu">
-                <img src="/static/person-icon.png" alt="icon-login">
+                <a href="/pages/profile.php">
+                    <img src="/static/person-icon.png" alt="icon-login">
+                </a>
             </button>
         </div>
     </header>
@@ -84,14 +87,16 @@ session_start();
                 <?= htmlspecialchars($user['email']) ?><button><img src="../static/botão-editar" alt="Editar"></button>
             </p>
             <p><strong>Idade:</strong>
-                <?= htmlspecialchars($user['age'] ?? 'dado não encontrado')  ?><button><img src="../static/botão-editar" alt="Editar"></button>
+                <?= htmlspecialchars($user['age'] ?? 'dado não encontrado') ?><button><img src="../static/botão-editar"
+                        alt="Editar"></button>
             </p>
             <p><strong>Sexo:</strong>
-                <?= htmlspecialchars($user['sex'] ?? 'dado não encontrado') ?><button><img src="../static/botão-editar" alt="Editar"></button>
+                <?= htmlspecialchars($user['sex'] ?? 'dado não encontrado') ?><button><img src="../static/botão-editar"
+                        alt="Editar"></button>
             </p>
             <p><strong>Telefone:</strong>
-                <?= htmlspecialchars($user['phone'] ?? 'dado não encontrado') ?><button><img src="../static/botão-editar"
-                        alt="Editar"></button>
+                <?= htmlspecialchars($user['phone'] ?? 'dado não encontrado') ?><button><img
+                        src="../static/botão-editar" alt="Editar"></button>
             </p>
             <p><strong>Cadastro:</strong>
                 <?= date('d/m/Y', strtotime($user['data_cadastro'])) ?><button><img src="../static/botão-editar"
@@ -105,7 +110,7 @@ session_start();
                     echo "<p>USUARIO NAO ECONTRADO</p>";
                 }
             } else {
-                echo "<p>VOCA NAO TA LOGADO</p>";
+                echo "<p>Você não está logado, faça login para poder visualizar!</p>"; 
             } ?>
         </div>
     </div>

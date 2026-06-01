@@ -29,7 +29,7 @@ session_start();
             <nav>
                 <ul class="menu">
                     <li><a href="#">Início</a></li>
-                    <li><a href="/pages/publication.php">Publicações</a></li>
+                    <li><a href="/pages/publications.php">Publicações</a></li>
                     <li><a href="#">Usuários</a></li>
                     <li><a href="/pages/profile.php">Perfil</a></li>
                     <li><a href="../index.php">Sair</a></li>

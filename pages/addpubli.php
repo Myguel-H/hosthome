@@ -30,8 +30,8 @@ session_start();
             <nav>
                 <ul class="menu">
                     <li><a href="">Início</a></li>
-                    <li><a href="/pages/publication.php">Publicações</a></li>
-                    <li><a href="#">Tags</a></li>
+                    <li><a href="/pages/publications.php">Publicações</a></li>
+                    <li><a href="/pages/profile.php">Perfil</a></li>
                 </ul>
             </nav>
 
@@ -66,15 +66,15 @@ session_start();
                 <input type="text" name="title" required="required" placeholder="Digite um título">
 
                 <label for="resume">Resumo</label>
-                <textarea name="resume" required="required"
-                    placeholder="Digite um breve resumo da publicação..."></textarea>
+                <textarea name="resume" required="required" maxlength="250"
+                    placeholder="Digite um breve resumo da publicação... Limitado a 250 caracteres"></textarea>
 
                 <label for="about">Sobre</label>
-                <textarea name="about" rows="3" required="required"
-                    placeholder="Informações adicionais sobre o tema..."></textarea>
+                <textarea name="about" rows="3" required="required" maxlength="250"
+                    placeholder="Informações adicionais sobre o tema... Limitado a 250 caracteres"></textarea>
 
                 <label for="creator_id">Criador</label>
-                <select name="creator_id" required>
+                <select name="creator_id" required="required">
                     <option value="">Escolha um(a) criador(a)</option>
                     <?php
                     $creators = $pdo->query("SELECT id, user_creator FROM creators ORDER BY user_creator")->fetchAll();
@@ -84,15 +84,13 @@ session_start();
                     ?>
                 </select>
 
-
                 <label for="category_id">Categorias</label>
-                <select name="category_id" required>
+                <select name="category_id" required="required">
                     <option value="">Escolha uma categoria</option>
                     <?php
-                    $stmt = $pdo->query("SELECT id, name FROM categorys ORDER BY name");
-                    $categorys = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    $categorys = $pdo->query("SELECT id, name FROM categorys ORDER BY name")->fetchAll();
                     foreach ($categorys as $category) {
-                        echo "<option value='{$category['id']}'>{$category['name']} </option>";
+                        echo "<option value='{$category['id']}'>" . htmlspecialchars($category['name']) . "</option>";
                     }
                     ?>
                 </select>

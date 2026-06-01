@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             header('Location: /pages/publications.php?registered=1');
             exit();
         } catch (PDOException $e) {
-            header('Location: /pages/addpubli.php?error=1');
+            header('Location: /pages/addpubli.php?error=1') . $e->getMessage();
             exit();
         }
     }

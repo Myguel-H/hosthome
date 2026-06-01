@@ -25,7 +25,7 @@
       <nav>
         <ul class="menu">
           <li><a href="/teste.html">Início</a></li>
-          <li><a href="#">Publicações</a></li>
+          <li><a href="/pages/publications.php">Publicações</a></li>
           <li><a href="#">Tags</a></li>
         </ul>
       </nav>

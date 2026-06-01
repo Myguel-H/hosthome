@@ -38,7 +38,9 @@ session_start();
             <!--Icone de person-->
             <div class="person-icon"></div>
             <button class="btn-login" id="menu">
-                <img src="/static/person-icon.png" alt="icon-login">
+                <a href="/pages/profile.php">
+                    <img src="/static/person-icon.png" alt="icon-login">
+                </a>
             </button>
         </div>
     </header>
