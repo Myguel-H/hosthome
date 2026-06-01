@@ -54,46 +54,69 @@ O projeto segue o padrão MVC, separando responsabilidades entre:
 
 Essa separação torna o projeto mais organizado, escalável e de fácil manutenção.
 
-
-
-                                                      Tabela "public.users"
-    Coluna     |            Tipo             | Ordenação | Pode ser nulo |                         Padrão                         
----------------+-----------------------------+-----------+---------------+--------------------------------------------------------
- id            | integer                     |           | not null      | nextval('users_id_seq'::regclass)
- name          | character varying(100)      |           |               | 
- age           | character varying(30)       |           |               | 
- sex           | character varying(10)       |           |               | 
- phone         | character varying(16)       |           |               | 
- email         | character varying(45)       |           | not null      | 
- type          | character varying(20)       |           |               | 'comum'::character varying
- avatar        | character varying(255)      |           |               | '/static-person/default-avatar.png'::character varying
- data_cadastro | timestamp without time zone |           |               | CURRENT_TIMESTAMP
- password      | character varying(255)      |           |               | 
-Índices:
+hosthome_db=> \d users;
+                                          Table "public.users"
+    Column     |            Type             | Collation | Nullable |              Default              
+---------------+-----------------------------+-----------+----------+-----------------------------------
+ id            | integer                     |           | not null | nextval('users_id_seq'::regclass)
+ name          | character varying(100)      |           |          | 
+ age           | character varying(10)       |           |          | 
+ sex           | character varying(20)       |           |          | 
+ phone         | character varying(50)       |           |          | 
+ email         | character varying(100)      |           | not null | 
+ avatar        | character varying(255)      |           |          | 
+ data_cadastro | timestamp without time zone |           |          | CURRENT_TIMESTAMP
+ password      | character varying(255)      |           | not null | 
+ type          | character varying(20)       |           |          | 'comum'::character varying
+Indexes:
     "users_pkey" PRIMARY KEY, btree (id)
-Referenciada por:
-    TABLE "publication" CONSTRAINT "publication_user_id_fkey" FOREIGN KEY (user_id) REFERENCES users(id)
-
-hosthome_db=# 
+Referenced by:
+    TABLE "publications" CONSTRAINT "publication_user_id_fkey" FOREIGN KEY (creator_id) REFERENCES users(id)
 
 
 
-                                            Tabela "public.publication"
-    Coluna     |            Tipo             | Ordenação | Pode ser nulo |                 Padrão                  
----------------+-----------------------------+-----------+---------------+-----------------------------------------
- id            | integer                     |           | not null      | nextval('publication_id_seq'::regclass)
- title         | character varying(100)      |           | not null      | 
- resume        | text                        |           | not null      | 
- about         | character varying(250)      |           | not null      | 
- user_id       | integer                     |           | not null      | 
- category_id   | integer                     |           | not null      | 
- creation_date | timestamp without time zone |           |               | CURRENT_TIMESTAMP
- content       | text                        |           |               | 
-Índices:
+hosthome_db=> \d publications;
+                                         Table "public.publications"
+    Column     |            Type             | Collation | Nullable |                 Default                 
+---------------+-----------------------------+-----------+----------+-----------------------------------------
+ id            | integer                     |           | not null | nextval('publication_id_seq'::regclass)
+ title         | character varying(100)      |           | not null | 
+ resume        | text                        |           | not null | 
+ about         | character varying(250)      |           | not null | 
+ creator_id    | integer                     |           | not null | 
+ category_id   | integer                     |           | not null | 
+ creation_date | timestamp without time zone |           |          | CURRENT_TIMESTAMP
+ content       | text                        |           |          | 
+Indexes:
     "publication_pkey" PRIMARY KEY, btree (id)
-Restrições de chave estrangeira:
-    "publication_category_id_fkey" FOREIGN KEY (category_id) REFERENCES category(id)
-    "publication_user_id_fkey" FOREIGN KEY (user_id) REFERENCES users(id)
+Foreign-key constraints:
+    "publication_category_id_fkey" FOREIGN KEY (category_id) REFERENCES categorys(id)
+    "publication_user_id_fkey" FOREIGN KEY (creator_id) REFERENCES users(id)
 
 hosthome_db=# 
+
+                                        Table "public.categorys"
+    Column     |            Type             | Collation | Nullable |               Default                
+---------------+-----------------------------+-----------+----------+--------------------------------------
+ id            | integer                     |           | not null | nextval('category_id_seq'::regclass)
+ name          | character varying(50)       |           | not null | 
+ creation_date | timestamp without time zone |           |          | CURRENT_TIMESTAMP
+Indexes:
+    "category_pkey" PRIMARY KEY, btree (id)
+Referenced by:
+    TABLE "publications" CONSTRAINT "publication_category_id_fkey" FOREIGN KEY (category_id) REFERENCES categorys(id)
+
+~
+
+hosthome_db=> \d creators;
+                                      Table "public.creators"
+    Column    |         Type          | Collation | Nullable |               Default               
+--------------+-----------------------+-----------+----------+-------------------------------------
+ id           | integer               |           | not null | nextval('creator_id_seq'::regclass)
+ user_creator | character varying(50) |           | not null | 
+Indexes:
+    "creator_pkey" PRIMARY KEY, btree (id)
+
+hosthome_db=> 
+
 
