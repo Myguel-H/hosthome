@@ -1,3 +1,8 @@
+<?php
+require_once '../config.php';
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -61,19 +66,40 @@
                 <input type="text" name="title" required="required" placeholder="Digite um título">
 
                 <label for="resume">Resumo</label>
-                <textarea name="resume" required="required" placeholder="Digite um breve resumo da publicação..."></textarea>
+                <textarea name="resume" required="required"
+                    placeholder="Digite um breve resumo da publicação..."></textarea>
 
                 <label for="about">Sobre</label>
-                <textarea name="about" rows="3" required="required" placeholder="Informações adicionais sobre o tema..."></textarea>
+                <textarea name="about" rows="3" required="required"
+                    placeholder="Informações adicionais sobre o tema..."></textarea>
 
-                <label for="user_id">Criador</label>
-                <input type="number" name="user_id" required="required">
+                <label for="creator_id">Criador</label>
+                <select name="creator_id" required>
+                    <option value="">Escolha um(a) criador(a)</option>
+                    <?php
+                    $creators = $pdo->query("SELECT id, user_creator FROM creators ORDER BY user_creator")->fetchAll();
+                    foreach ($creators as $creator) {
+                        echo "<option value='{$creator['id']}'>" . htmlspecialchars($creator['user_creator']) . "</option>";
+                    }
+                    ?>
+                </select>
+
 
                 <label for="category_id">Categorias</label>
-                <input type="number" name="category_id" required="required">
+                <select name="category_id" required>
+                    <option value="">Escolha uma categoria</option>
+                    <?php
+                    $stmt = $pdo->query("SELECT id, name FROM categorys ORDER BY name");
+                    $categorys = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    foreach ($categorys as $category) {
+                        echo "<option value='{$category['id']}'>{$category['name']} </option>";
+                    }
+                    ?>
+                </select>
 
                 <label for="content">Conteúdo</label>
-                <textarea name="content" rows="6" required="required" placeholder="Digite o conteúdo completo do artigo..."></textarea>
+                <textarea name="content" rows="6" required="required"
+                    placeholder="Digite o conteúdo completo do artigo..."></textarea>
             </div>
             <button class="btn" type="submit">Publicar</button>
         </form>

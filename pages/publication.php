@@ -66,7 +66,7 @@ session_start();
 
         if ($user_id > 0) {
 
-            $stmt = $pdo->prepare("SELECT title, resume, about, user_id, category_id, content, creation_date FROM publication");
+            $stmt = $pdo->prepare("SELECT p.title, p.resume, p.about, u.user_creator as criador, c.name as categoria, p.content, p.creation_date FROM publications p JOIN creators u ON p.creator_id = u.id JOIN categorys c ON p.category_id = c.id");
             $stmt->execute();
             $publications = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -90,11 +90,11 @@ session_start();
                 </p>
 
                 <p><strong>Criador</strong>
-                    <?= htmlspecialchars($pub['user_id']) ?>
+                    <?= htmlspecialchars($pub['criador']) ?>
                 </p>
 
                 <p><strong>Categoria</strong>
-                    <?= htmlspecialchars($pub['category_id']) ?>
+                    <?= htmlspecialchars($pub['categoria']) ?>
                 </p>
 
                 <p><strong>Conteudo</strong>

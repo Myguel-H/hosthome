@@ -10,14 +10,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $title = $_POST['title'] ?? '';
         $resume = $_POST['resume'] ?? '';
         $about = $_POST['about'] ?? '';
-        $user_id = $_POST['user_id'] ?? '';
+        $creator_id = $_POST['creator_id'] ?? '';
         $category_id = $_POST['category_id'] ?? '';
         $content = $_POST['content'] ?? '';
 
         try {
-            $stmt = $pdo->prepare('INSERT INTO publication (title, resume, about, user_id, category_id, content) VALUES (?, ?, ?, ?, ?, ?)');
-            $stmt->execute([$title, $resume, $about, $user_id, $category_id, $content]);
-            header('Location: /pages/publication.php?registered=1');
+            $stmt = $pdo->prepare('INSERT INTO publications (title, resume, about, creator_id, category_id, content) VALUES (?, ?, ?, ?, ?, ?)');
+            $stmt->execute([$title, $resume, $about, $creator_id, $category_id, $content]);
+            header('Location: /pages/publications.php?registered=1');
             exit();
         } catch (PDOException $e) {
             header('Location: /pages/addpubli.php?error=1');

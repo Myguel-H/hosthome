@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 ?>
 
@@ -62,8 +63,6 @@
         <div class="data-user">
             <?php
             require_once '../config.php';
-            session_start();
-
             $user_id = $_SESSION['user_id'] ?? 0;
 
             if ($user_id > 0) {
@@ -85,13 +84,13 @@
                 <?= htmlspecialchars($user['email']) ?><button><img src="../static/botão-editar" alt="Editar"></button>
             </p>
             <p><strong>Idade:</strong>
-                <?= htmlspecialchars($user['age']) ?><button><img src="../static/botão-editar" alt="Editar"></button>
+                <?= htmlspecialchars($user['age'] ?? 'dado não encontrado')  ?><button><img src="../static/botão-editar" alt="Editar"></button>
             </p>
             <p><strong>Sexo:</strong>
-                <?= htmlspecialchars($user['sex']) ?><button><img src="../static/botão-editar" alt="Editar"></button>
+                <?= htmlspecialchars($user['sex'] ?? 'dado não encontrado') ?><button><img src="../static/botão-editar" alt="Editar"></button>
             </p>
             <p><strong>Telefone:</strong>
-                <?= htmlspecialchars('(dd) dddd-dddd', $user['phone']) ?><button><img src="../static/botão-editar"
+                <?= htmlspecialchars($user['phone'] ?? 'dado não encontrado') ?><button><img src="../static/botão-editar"
                         alt="Editar"></button>
             </p>
             <p><strong>Cadastro:</strong>

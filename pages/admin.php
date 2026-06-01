@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -122,13 +126,13 @@
         p.id, 
         p.title, 
         p.about, 
-        u.name as create, 
+        u.user_creator as create, 
         c.name as category, 
         p.content, 
         p.creation_date
-    FROM publication p 
-    JOIN users u ON p.user_id = u.id 
-    JOIN category c ON p.category_id = c.id
+    FROM publications p 
+    JOIN creators u ON p.creator_id = u.id 
+    JOIN categorys c ON p.category_id = c.id
 ");
                     $publication = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
