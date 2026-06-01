@@ -834,6 +834,9 @@ header {
 .publication-list table {
     max-height: 50vh;
     table-layout: fixed;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .user-list thead,
@@ -873,15 +876,16 @@ header {
 
 /* Apenas publication-list com altura fixa */
 .publication-list tbody tr {
-    height: 50px !important;
-    max-height: 50px !important;
+    height: 70px !important;
+    max-height: 70px !important;
 }
 
 .user-list tbody,
 .publication-list tbody {
     display: block;
-    max-height: calc(10 * 50px);
+    max-height: calc(10 * 70px);
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .user-list tbody tr:hover,
@@ -896,10 +900,9 @@ header {
 
 .user-list td,
 .publication-list td {
-    padding: 16px;
+    padding: 16px 12px;
     color: #4f4f4f;
     word-break: break-word;
-    max-width: 250px;
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -911,16 +914,86 @@ header {
     font-size: 0.9rem;
 }
 
-.publication-list td:first-child {
-    width: 50px;
-    max-width: 50px;
-}
-
-.publication-list td:nth-child(6),
-.publication-list td:nth-child(7) {
-    max-width: 350px;
+.publication-list td {
     white-space: nowrap;
     overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+
+/* ----------Estilização de tamanho do publication-list (Não mexer nessa pohha se não quiser se estressar)*/
+
+/* TH 2->7 */
+.publication-list th:nth-child(2) {
+    width: 153.55px;
+    max-width: 180px;
+    text-align: center;
+}
+
+.publication-list th:nth-child(3) {
+    width: 153.55px;
+    max-width: 180px;
+    text-align: center;
+}
+.publication-list th:nth-child(4) {
+    width: 153.55px;
+    max-width: 180px;
+    text-align: center;
+}
+.publication-list th:nth-child(5) {
+    width: 153.55px;
+    max-width: 180px;
+    text-align: center;
+}
+.publication-list th:nth-child(6) {
+    width: 153.55px;
+    max-width: 180px;
+    text-align: center;
+}
+
+.publication-list th:nth-child(7) {
+    width: 153.55px;
+    max-width: 180px;
+    text-align: center;
+}
+
+/* td 1->7 */
+.publication-list td:nth-child(1) {
+    width: 50px;
+    max-width: 50px;
+    text-align: center;
+}
+
+.publication-list td:nth-child(2) {
+    width: 153.55px;
+    max-width: 180px;
+}
+
+.publication-list td:nth-child(3) {
+    width: 153.55px;
+    max-width: 180px;
+}
+
+.publication-list td:nth-child(4) {
+    width: 153.55px;
+    max-width: 180px;
+}
+
+.publication-list td:nth-child(5) {
+    width: 153.55px;
+    max-width: 180px;
+    text-align: center;
+}
+
+.publication-list td:nth-child(6) {
+    width: 153.55px;
+    max-width: 180px;
+}
+
+.publication-list td:nth-child(7) {
+    width: 150px;
+    max-width: 150px;
+    text-align: center;
 }
 
 /* Responsividade para telas menores */
@@ -1669,7 +1742,6 @@ header {
 }
 
 .btn-publi a:hover {
-    background: linear-gradient(135deg, rgba(198, 11, 79, 0.1) 0%, rgba(85, 10, 95, 0.1) 100%);
     color: #ff6b6b;
     font-weight: 700;
     transform: translateY(-2px);

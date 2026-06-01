@@ -31,14 +31,15 @@ session_start();
                 <ul class="menu">
                     <li><a href="">Início</a></li>
                     <li><a href="/pages/publications.php">Publicações</a></li>
-                    <li><a href="/pages/profile.php">Perfil</a></li>
                 </ul>
             </nav>
 
             <!--Icone de person-->
             <div class="person-icon"></div>
             <button class="btn-login" id="menu">
-                <img src="/static/person-icon.png" alt="icon-login">
+                <a href="/pages/profile.php">
+                    <img src="/static/person-icon.png" alt="icon-login">
+                </a>
             </button>
         </div>
     </header>
@@ -54,11 +55,21 @@ session_start();
                 <h3>Sobre</h3>
                 <li><a href="#">Configurações</a></li>
                 <li><a href="#">Sobre</a></li>
+                <li><a href="../logout.php">Sair</a></li>
             </ul>
         </nav>
     </div>
 
     <div class="add-publication">
+
+        <?php
+        require_once '../config.php';
+        session_start();
+
+        $user_id = $_SESSION['user_id'] ?? 0;
+
+        if ($user_id > 0) {
+            ?>
         <form action="../create_post.php" method="POST">
             <input type="hidden" name="action" value="publish">
             <div class="insert-publication">
@@ -101,6 +112,11 @@ session_start();
             </div>
             <button class="btn" type="submit">Publicar</button>
         </form>
+        <?php
+        } else {
+            echo "<p>Você não está logado</p>";
+        }
+        ?>
     </div>
 
     <!------------------------- F    O    O    T    E    R --------------------------->

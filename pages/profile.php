@@ -32,7 +32,6 @@ session_start();
                     <li><a href="/index.php">Início</a></li>
                     <li><a href="/pages/publications.php">Publicações</a></li>
                     <li><a href="/pages/addpubli.php">Publicar</a></li>
-                    <li><a href="../logout.php">Sair</a></li>
                 </ul>
             </nav>
 
@@ -58,6 +57,7 @@ session_start();
                 <h3>Sobre</h3>
                 <li><a href="#">Configurações</a></li>
                 <li><a href="#">Sobre</a></li>
+                <li><a href="../logout.php">Sair</a></li>
             </ul>
         </nav>
     </div>
@@ -77,7 +77,7 @@ session_start();
                 if ($user) {
                     ?>
 
-            <img class="img-user" src="../static/user.png" alt="avatar">
+            <img class="img-user" src="../static/img_person/admin.jpeg" alt="avatar">
 
 
             <p><strong>Nome:</strong>

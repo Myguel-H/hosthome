@@ -28,10 +28,9 @@ session_start();
             <!---Menu header-->
             <nav>
                 <ul class="menu">
-                    <li><a href="/teste.html">Início</a></li>
+                    <li><a href="../index.php">Início</a></li>
                     <li><a href="#">Tags</a></li>
                     <li><a href="/pages/addpubli.php">Publicar</a></li>                    
-                    <li><a href="../index.php">Sair</a></li>
                 </ul>
             </nav>
 
@@ -56,6 +55,7 @@ session_start();
                 <h3>Sobre</h3>
                 <li><a href="#">Configurações</a></li>
                 <li><a href="#">Sobre</a></li>
+                <li><a href="../index.php">Sair</a></li>
             </ul>
         </nav>
     </div>
@@ -121,11 +121,6 @@ session_start();
         } ?>
 
     </div>
-
-    <div class="btn-publi">
-        <a href="/pages/addpubli.php">Criar Publicação</a>
-    </div>
-
 
     <!------------------------- F    O    O    T    E    R --------------------------->
 

@@ -38,7 +38,9 @@ session_start();
 
             <!--Icone de person-->
             <button class="btn-login" id="menu">
-                <img src="/static/person-icon.png" alt="icon-login">
+                <a href="/pages/profile.php">
+                    <img src="/static/person-icon.png" alt="icon-login">
+                </a>
             </button>
         </div>
     </header>
@@ -159,7 +161,7 @@ session_start();
                                 <?= htmlspecialchars($row['content']) ?>
                             </td>
                             <td>
-                                <?= htmlspecialchars($row['creation_date']) ?>
+                                <?= date('d/m/Y', strtotime($row['creation_date'])) ?>
                             </td>
 
                         </tr>
