@@ -1,4 +1,4 @@
-# HOMEHOST
+# HOSTHOME
 
 A ideia inicial deste projeto era desenvolver um site/aplicação que servisse como ponto de partida e suporte para pessoas interessadas em ingressar na área de tecnologia ou no universo do software livre/Linux.
 

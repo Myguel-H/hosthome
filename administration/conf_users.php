@@ -21,7 +21,7 @@ session_start();
         <div class="logo-name">
             <img class="logo-icon" src="/static/logohosthome.webp" alt="Logo">
             <a href="../index.php">
-                <h2>HostHome</h2>
+                <h2>HostHome - <strong style="color: #dd1e1e; text-decoration: none;">Administrador</strong></h2>
             </a>
         </div>
 
@@ -29,10 +29,9 @@ session_start();
             <!---Menu header-->
             <nav>
                 <ul class="menu">
-                    <li><a href="#">Início</a></li>
-                    <li><a href="/pages/publications.php">Publicações</a></li>
-                    <li><a href="/administration/conf_users.php">Conf_Usuários</a></li>
-                    <li><a href="/administration/conf_publications.php">Conf_Publicações</a></li>
+                    <li><a href="/index.php">Início</a></li>
+                    <li><a href="/pages/profile.php">Perfil</a></li>
+                    <li><a href="/administration/conf_publications.php">Conf_publications</a></li>
                 </ul>
             </nav>
 
@@ -51,7 +50,7 @@ session_start();
         <nav>
             <ul class="sidebar-actions">
                 <h3>Sobre as publicações</h3>
-                <li><a href="#">Recentes</a></li>
+                <li><a href="/pages/addpubli.php">Publicar</a></li>
                 <li><a href="#">Apagadas</a></li>
                 <li><a href="#">Favoritas</a></li>
                 <li><a href="/pages/timeline.php">Timeline</a></li>
@@ -98,63 +97,20 @@ session_start();
                             <td>
                                 <?= htmlspecialchars($row['type']) ?>
                             </td>
-                            <td>ações</td>
+                            <td>
+                                <button action="../creat_post.php" value="delete" method="POST" name="action">
+                                    <?= htmlspecialchars($row['delete_id']) ?>
+                                </button>
+                            </td>
+                            <td>
+                                <form action="../auth.php" method="POST">
+                                    <input type="hidden" name="action" value="delete">
+                                    <input type="hidden" name="id" value="<?= $row['id'] ?>">
+                                    <button type="submit">Deletar</button>
+                                </form>
+                            </td>
                         </tr>
 
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        </div>
-
-
-        <!--Tabela publicações-->
-        <div class="publication-list">
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Título</th>
-                        <th>Sobre</th>
-                        <th>Criador</th>
-                        <th>Categoria</th>
-                        <th>Conteúdo</th>
-                        <th>Data da criação</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    require_once '../config.php';
-
-                    $stmt = $pdo->query("SELECT p.id, p.title, p.about, u.user_creator as create, c.name as category, p.content, p.creation_date FROM publications p JOIN creators u ON p.creator_id = u.id JOIN categorys c ON p.category_id = c.id ");
-                    $publication = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-
-                    foreach ($publication as $row):
-                        ?>
-                        <tr>
-                            <td>
-                                <?= $row['id'] ?>
-                            </td>
-                            <td>
-                                <?= htmlspecialchars($row['title']) ?>
-                            </td>
-                            <td>
-                                <?= htmlspecialchars($row['about']) ?>
-                            </td>
-                            <td>
-                                <?= htmlspecialchars($row['create']) ?>
-                            </td>
-                            <td>
-                                <?= htmlspecialchars($row['category']) ?>
-                            </td>
-                            <td>
-                                <?= htmlspecialchars($row['content']) ?>
-                            </td>
-                            <td>
-                                <?= date('d/m/Y', strtotime($row['creation_date'])) ?>
-                            </td>
-
-                        </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>

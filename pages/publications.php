@@ -21,7 +21,7 @@ session_start();
         <div class="logo-name">
             <img class="logo-icon" src="/static/logohosthome.webp" alt="Logo">
             <a href="../index.php">
-                <h2>HomeHost</h2>
+                <h2>HostHome</h2>
             </a>
         </div>
 
@@ -52,7 +52,7 @@ session_start();
                 <h3>Sobre as publicações</h3>
                 <li><a href="#">Recentes</a></li>
                 <li><a href="#">Apagadas</a></li>
-                <li><a href="#">Favoritas</a></li>
+                <li><a href="/pages/timeline.php">Timeline</a></li>                
                 <h3>Sobre</h3>
                 <li><a href="#">Configurações</a></li>
                 <li><a href="#">Sobre</a></li>

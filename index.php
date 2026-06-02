@@ -14,7 +14,7 @@ if ($user_id > 0) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Homehost - Myguel</title>
+  <title>HostHome - Myguel</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -26,7 +26,7 @@ if ($user_id > 0) {
     <div class="logo-name">
       <img class="logo-icon" src="/static/logohosthome.webp" alt="Logo">
       <a href="/index.php">
-        <h2>HomeHost</h2>
+        <h2>HostHome</h2>
       </a>
     </div>
 

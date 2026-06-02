@@ -21,7 +21,7 @@ session_start();
         <div class="logo-name">
             <img class="logo-icon" src="/static/logohosthome.webp" alt="Logo">
             <a href="../index.php">
-                <h2>HomeHost</h2>
+                <h2>HostHome</h2>
             </a>
         </div>
 

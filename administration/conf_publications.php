@@ -21,7 +21,7 @@ session_start();
         <div class="logo-name">
             <img class="logo-icon" src="/static/logohosthome.webp" alt="Logo">
             <a href="../index.php">
-                <h2>HostHome</h2>
+                <h2>HostHome - <strong style="color: #dd1e1e; text-decoration: none;">Administrador</strong></h2>
             </a>
         </div>
 
@@ -30,9 +30,8 @@ session_start();
             <nav>
                 <ul class="menu">
                     <li><a href="#">Início</a></li>
-                    <li><a href="/pages/publications.php">Publicações</a></li>
+                    <li><a href="/pages/profile.php">Perfil</a></li>
                     <li><a href="/administration/conf_users.php">Conf_Usuários</a></li>
-                    <li><a href="/administration/conf_publications.php">Conf_Publicações</a></li>
                 </ul>
             </nav>
 
@@ -51,9 +50,8 @@ session_start();
         <nav>
             <ul class="sidebar-actions">
                 <h3>Sobre as publicações</h3>
-                <li><a href="#">Recentes</a></li>
-                <li><a href="#">Apagadas</a></li>
-                <li><a href="#">Favoritas</a></li>
+                <li><a href="/pages/addpubli.php">Publicar</a></li>
+                <li><a href="/pages/publications.php">Publicações</a></li>
                 <li><a href="/pages/timeline.php">Timeline</a></li>
                 <h3>Sobre</h3>
                 <li><a href="#">Configurações</a></li>
@@ -64,49 +62,6 @@ session_start();
     </div>
 
     <div class="tables">
-        <!--Tabela usuarios-->
-        <div class="user-list">
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Usuário</th>
-                        <th>E-mail</th>
-                        <th>Tipo</th>
-                        <th>Tipo</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    require_once '../config.php'; //faz uma requisição no config.php
-                    
-                    $stmt = $pdo->query("SELECT id, name, email, type FROM users");
-                    $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                    foreach ($users as $row):
-                        ?>
-                        <tr>
-                            <td>
-                                <?= $row['id'] ?>
-                            </td>
-                            <td>
-                                <?= htmlspecialchars($row['name']) ?>
-                            </td>
-                            <td>
-                                <?= htmlspecialchars($row['email']) ?>
-                            </td>
-                            <td>
-                                <?= htmlspecialchars($row['type']) ?>
-                            </td>
-                            <td>ações</td>
-                        </tr>
-
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        </div>
-
-
         <!--Tabela publicações-->
         <div class="publication-list">
             <table>
@@ -153,7 +108,13 @@ session_start();
                             <td>
                                 <?= date('d/m/Y', strtotime($row['creation_date'])) ?>
                             </td>
-
+                            <td>
+                                <form action="../delete_post.php" method="POST">
+                                    <input type="hidden" name="action" value="delete">
+                                    <input type="hidden" name="id" value="<?= $row['id'] ?>">
+                                    <button type="submit">Deletar</button>
+                                </form>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
