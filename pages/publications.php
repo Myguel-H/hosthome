@@ -29,8 +29,8 @@ session_start();
             <nav>
                 <ul class="menu">
                     <li><a href="../index.php">Início</a></li>
-                    <li><a href="#">Tags</a></li>
                     <li><a href="/pages/addpubli.php">Publicar</a></li>                    
+                    <li><a href="#">Tags</a></li>
                 </ul>
             </nav>
 

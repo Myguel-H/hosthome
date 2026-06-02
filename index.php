@@ -1,3 +1,13 @@
+<?php
+session_start();
+$user_id = $_SESSION['user_id'] ?? 0;
+
+if ($user_id > 0) {
+  $profile = "/pages/profile.php";
+} else {
+  $profile = "/pages/login.php";
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -24,7 +34,7 @@
       <!---Menu header-->
       <nav>
         <ul class="menu">
-          <li><a href="/teste.html">Início</a></li>
+          <li><a href="/index.php">Início</a></li>
           <li><a href="/pages/publications.php">Publicações</a></li>
           <li><a href="#">Tags</a></li>
         </ul>
@@ -33,7 +43,7 @@
       <!--Icone de person-->
       <div class="person-icon"></div>
       <button class="btn-login" id="menu">
-        <a href="/pages/login.php">
+        <a href="<?= $profile ?>">
           <img src="/static/person-icon.png" alt="icon-login">
         </a>
       </button>

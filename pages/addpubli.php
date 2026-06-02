@@ -29,8 +29,9 @@ session_start();
             <!---Menu header-->
             <nav>
                 <ul class="menu">
-                    <li><a href="">Início</a></li>
+                    <li><a href="../index.php">Início</a></li>
                     <li><a href="/pages/publications.php">Publicações</a></li>
+                    <li><a href="#">Tags</a></li>
                 </ul>
             </nav>
 
@@ -64,7 +65,6 @@ session_start();
 
         <?php
         require_once '../config.php';
-        session_start();
 
         $user_id = $_SESSION['user_id'] ?? 0;
 
