@@ -9,7 +9,8 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homehost - Myguel</title>
+    <title>Perfil - Hosthome</title>
+    <link class="logo-title" rel="icon" href="../static/logohosthome.webp" type="img-icon">
     <link rel="stylesheet" href="../style.css">
 </head>
 
@@ -110,9 +111,10 @@ session_start();
                     echo "<p>USUARIO NAO ECONTRADO</p>";
                 }
             } else {
-                echo "<p>Você não está logado, faça login para poder visualizar!</p>"; 
-            } ?>
+                echo"<p>Você não está logado, faça login para poder visualizar! </p>"; 
+            } ?> 
         </div>
+        
     </div>
 
     <div class="btn-publi">

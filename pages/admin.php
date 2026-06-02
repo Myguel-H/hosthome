@@ -8,7 +8,8 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homehost - Myguel</title>
+    <title>Administrador - Hosthome</title>
+    <link class="logo-title" rel="icon" href="../static/logohosthome.webp" type="img-icon">
     <link rel="stylesheet" href="../style.css">
 </head>
 
@@ -123,19 +124,7 @@ session_start();
                     <?php
                     require_once '../config.php';
 
-                    $stmt = $pdo->query("
-    SELECT 
-        p.id, 
-        p.title, 
-        p.about, 
-        u.user_creator as create, 
-        c.name as category, 
-        p.content, 
-        p.creation_date
-    FROM publications p 
-    JOIN creators u ON p.creator_id = u.id 
-    JOIN categorys c ON p.category_id = c.id
-");
+                    $stmt = $pdo->query("SELECT p.id, p.title, p.about, u.user_creator as create, c.name as category, p.content, p.creation_date FROM publications p JOIN creators u ON p.creator_id = u.id JOIN categorys c ON p.category_id = c.id ");
                     $publication = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 

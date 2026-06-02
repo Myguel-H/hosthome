@@ -37,6 +37,7 @@ if ($user_id > 0) {
           <li><a href="/index.php">Início</a></li>
           <li><a href="/pages/publications.php">Publicações</a></li>
           <li><a href="#">Tags</a></li>
+          <li><a href="/pages/timeline.php">Timeline</a></li>
         </ul>
       </nav>
 

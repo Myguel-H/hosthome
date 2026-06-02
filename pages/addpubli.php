@@ -9,7 +9,8 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homehost - Myguel</title>
+    <title>Criar Publi - Hosthome</title>
+    <link class="logo-title" rel="icon" href="../static/logohosthome.webp" type="img-icon">
     <link rel="stylesheet" href="../style.css">
 </head>
 

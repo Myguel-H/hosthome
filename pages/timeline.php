@@ -8,7 +8,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Publicações - Hosthome</title>
+    <title>Timeline - Hosthome</title>
     <link class="logo-title" rel="icon" href="../static/logohosthome.webp" type="img-icon">
     <link rel="stylesheet" href="../style.css">
 </head>
@@ -61,13 +61,9 @@ session_start();
         </nav>
     </div>
 
-    <div class="add-publication">
+    <div class="add-publication timeline-page">
         <?php
         require_once '../config.php';
-
-        $user_id = $_SESSION['user_id'] ?? 0;
-
-        if ($user_id > 0) {
 
             $stmt = $pdo->prepare("SELECT p.title, p.resume, p.about, u.user_creator as criador, c.name as categoria, p.content, p.creation_date FROM publications p JOIN creators u ON p.creator_id = u.id JOIN categorys c ON p.category_id = c.id");
             $stmt->execute();
@@ -117,9 +113,7 @@ session_start();
             } else {
                 echo "<p>Nenhuma publicação encontrada</p></div>";
             }
-        } else {
-            echo "<p>Por favor, faça login para visualizar publicações</p>";
-        } ?>
+            ?>
 
     </div>
 
