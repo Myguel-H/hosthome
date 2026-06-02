@@ -117,11 +117,6 @@ session_start();
         
     </div>
 
-    <div class="btn-publi">
-        <a href="/pages/addpubli.php">Criar Publicação</a>
-    </div>
-
-
     <!------------------------- F    O    O    T    E    R --------------------------->
 
     <div class="footer-container">

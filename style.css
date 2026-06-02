@@ -1549,8 +1549,9 @@ header {
     gap: 16px;
     transition: all 0.3s ease;
     animation: slideUp 0.5s ease-out;
-    height: 700px;
+    max-height: 650px;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 @keyframes slideUp {
@@ -1578,6 +1579,9 @@ header {
     font-size: 0.95rem;
     color: #4f4f4f;
     line-height: 1.6;
+    word-wrap: break-word;
+    white-space: normal;
+    overflow-wrap: break-word;
 }
 
 .pub-itens p strong {

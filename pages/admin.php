@@ -33,7 +33,6 @@ session_start();
                     <li><a href="/pages/publications.php">Publicações</a></li>
                     <li><a href="#">Usuários</a></li>
                     <li><a href="/pages/profile.php">Perfil</a></li>
-                    <li><a href="../index.php">Sair</a></li>
                 </ul>
             </nav>
 
@@ -55,9 +54,11 @@ session_start();
                 <li><a href="#">Recentes</a></li>
                 <li><a href="#">Apagadas</a></li>
                 <li><a href="#">Favoritas</a></li>
+                <li><a href="/pages/timeline.php">Timeline</a></li>
                 <h3>Sobre</h3>
                 <li><a href="#">Configurações</a></li>
                 <li><a href="#">Ajuda</a></li>
+                <li><a href="../index.php">Sair</a></li>
             </ul>
         </nav>
     </div>
