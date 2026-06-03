@@ -78,7 +78,7 @@ session_start();
                 if ($user) {
                     ?>
 
-            <button> <a href="/pages/edit_user.php">Editar</a> </button>
+            <button> <a href="/pages/user_update.php">Editar</a> </button>
 
             <img class="img-user" src="../static/img_person/admin.jpeg" alt="avatar">
 

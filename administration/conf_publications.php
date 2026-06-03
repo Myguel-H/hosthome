@@ -30,14 +30,14 @@ session_start();
             <nav>
                 <ul class="menu">
                     <li><a href="#">Início</a></li>
-                    <li><a href="/pages/profile.php">Perfil</a></li>
+                    <li><a href="/pages/user_profile.php">Perfil</a></li>
                     <li><a href="/administration/conf_users.php">Conf_Usuários</a></li>
                 </ul>
             </nav>
 
             <!--Icone de person-->
             <button class="btn-login" id="menu">
-                <a href="/pages/profile.php">
+                <a href="/pages/user_profile.php">
                     <img src="/static/person-icon.png" alt="icon-login">
                 </a>
             </button>

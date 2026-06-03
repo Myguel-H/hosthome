@@ -436,7 +436,8 @@ header {
     min-height: calc(100vh - 300px);
     padding: 32px 20px;
     font-family: 'Inter', sans-serif;
-    padding-right: 250px;
+    padding-right: 35rem;
+    padding-bottom: 10rem;
 }
 
 .data-user {

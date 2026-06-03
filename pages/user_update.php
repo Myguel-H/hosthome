@@ -1,4 +1,5 @@
 <?php
+require_once '../config.php';
 session_start();
 ?>
 
@@ -8,7 +9,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Publicações - Hosthome</title>
+    <title>Criar Publi - Hosthome</title>
     <link class="logo-title" rel="icon" href="../static/logohosthome.webp" type="img-icon">
     <link rel="stylesheet" href="../style.css">
 </head>
@@ -30,7 +31,7 @@ session_start();
             <nav>
                 <ul class="menu">
                     <li><a href="../index.php">Início</a></li>
-                    <li><a href="/pages/addpubli.php">Publicar</a></li>                    
+                    <li><a href="/pages/publications.php">Publicações</a></li>
                     <li><a href="#">Tags</a></li>
                 </ul>
             </nav>
@@ -52,77 +53,56 @@ session_start();
                 <h3>Sobre as publicações</h3>
                 <li><a href="#">Recentes</a></li>
                 <li><a href="#">Apagadas</a></li>
-                <li><a href="/pages/timeline.php">Timeline</a></li>                
+                <li><a href="#">Favoritas</a></li>
                 <h3>Sobre</h3>
                 <li><a href="#">Configurações</a></li>
                 <li><a href="#">Sobre</a></li>
-                <li><a href="../index.php">Sair</a></li>
+                <li><a href="../logout.php">Sair</a></li>
             </ul>
         </nav>
     </div>
 
     <div class="add-publication">
+
         <?php
         require_once '../config.php';
 
         $user_id = $_SESSION['user_id'] ?? 0;
 
         if ($user_id > 0) {
+            ?>
+        <form action="../auth.php" method="POST">
+            <input type="hidden" name="action" value="update">
+            <div class="insert-publication">
+                <label for="name">Name</label>
+                <input type="text" name="name" required="required">
 
-            $stmt = $pdo->prepare("SELECT p.title, p.resume, p.about, u.user_creator as criador, c.name as categoria, p.content, p.creation_date FROM publications p JOIN creators u ON p.creator_id = u.id JOIN categorys c ON p.category_id = c.id");
-            $stmt->execute();
-            $publications = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                <label for="gmail">Email</label>
+                <input type="email" name="email" required="required">
 
-            if (count($publications) > 0) {
-                ?>
-        <div class="pub-container">
-            <?php
-            foreach ($publications as $pub) {
-                ?>
-            <div class="pub-itens">
-                <p><strong>Titulo</strong>
-                    <?= htmlspecialchars($pub['title']) ?>
-                </p>
+                <label for="age">Idade</label>
+                <input type="number" min="0" max="110" name="age" required="required">
 
-                <p><strong>Resumo</strong>
-                    <?= htmlspecialchars($pub['resume']) ?>
-                </p>
+                <label for="sex">Sexo</label>
+                <select value="" name="sex" required="required">
+                    <option value=""></option>
+                    <?php
+                        echo "<option value=''>" . htmlspecialchars('Masculino')  . "</option>";
+                        echo "<option value=''>" . htmlspecialchars('Feminino')  . "</option>";
+                    ?>
+                </select>
 
-                <p><strong>Sobre</strong>
-                    <?= htmlspecialchars($pub['about']) ?>
-                </p>
-
-                <p><strong>Criador</strong>
-                    <?= htmlspecialchars($pub['criador']) ?>
-                </p>
-
-                <p><strong>Categoria</strong>
-                    <?= htmlspecialchars($pub['categoria']) ?>
-                </p>
-
-                <p><strong>Conteudo</strong>
-                    <span class="content-nl">
-                        <?= htmlspecialchars($pub['content']) ?>
-                    </span>
-                </p>
-
-                <p><strong>Cadastro:</strong>
-                    <?= date('d/m/Y', strtotime($pub['creation_date'])) ?>
-                </p>
+                <label for="phone">Telefone</label>
+                <input type="number" maxlength="11" name="phone"  required="required">
 
             </div>
-            <?php
-            }
-            ?>
-        </div>
+            <button class="btn" type="submit">Atualizar</button>
+        </form>
         <?php
-            } else {
-                echo "<p>Nenhuma publicação encontrada</p></div>";
-            }
         } else {
-            echo "<p>Por favor, faça login para visualizar publicações</p>";
-        } ?>
-
+            echo "<p>Você não está logado</p>";
+        }
+        ?>
     </div>
 
     <!------------------------- F    O    O    T    E    R --------------------------->

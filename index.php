@@ -3,7 +3,7 @@ session_start();
 $user_id = $_SESSION['user_id'] ?? 0;
 
 if ($user_id > 0) {
-  $profile = "/pages/profile.php";
+  $profile = "/pages/user_profile.php";
 } else {
   $profile = "/pages/login.php";
 }

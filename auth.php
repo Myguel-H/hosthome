@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { //veio metodo POST de outro arquivo 
         if ($user && password_verify($password, $user['password'])) {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_email'] = $user['email'];
-            header('Location: /pages/profile.php?logado'); //se os dados tiverem corretos manda para a location
+            header('Location: /pages/user_profile.php?logado'); //se os dados tiverem corretos manda para a location
             exit();
         } else {
             header('Location: /pages/login.php?error=1'); //dads incorretos, permanecem no login e na url retorna erro
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { //veio metodo POST de outro arquivo 
         }
     }
 
-    if ($action == 'delete') { //Ação para registro de usuario 
+    if ($action == 'delete') {
         $id = $_POST['id'] ?? '';
 
         try {
@@ -59,6 +59,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { //veio metodo POST de outro arquivo 
         }
     }
 
+        if ($action == 'update') {
+        $name = $_POST['name'] ?? '';
+        $email = $_POST['email'] ?? '';
+        $age = $_POST['age'] ?? '';
+        $sex = $_POST['sex'] ?? '';
+        $phone = $_POST['phone'] ?? '';
+
+        try {
+            $stmt = $pdo->prepare('UPDATE users SET name, email, age, sex, phone VALUE (?, ?, ?, ?, ?)');
+            $stmt->execute([$name, $email, $age, $sex, $phone]);
+            header('Location: /pages/user_update.php?update=1');
+            exit();
+        } catch (PDOException $e) {
+            header('Location: /pages/user_update.php?error=1');
+            exit();
+        }
+    }
     
 
 }
