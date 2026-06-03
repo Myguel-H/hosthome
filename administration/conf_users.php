@@ -98,11 +98,6 @@ session_start();
                                 <?= htmlspecialchars($row['type']) ?>
                             </td>
                             <td>
-                                <button action="../creat_post.php" value="delete" method="POST" name="action">
-                                    <?= htmlspecialchars($row['delete_id']) ?>
-                                </button>
-                            </td>
-                            <td>
                                 <form action="../auth.php" method="POST">
                                     <input type="hidden" name="action" value="delete">
                                     <input type="hidden" name="id" value="<?= $row['id'] ?>">

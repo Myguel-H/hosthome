@@ -30,7 +30,7 @@ session_start();
             <nav>
                 <ul class="menu">
                     <li><a href="../index.php">Início</a></li>
-                    <li><a href="/pages/addpubli.php">Publicar</a></li>                    
+                    <li><a href="/pages/addpubli.php">Publicar</a></li>
                     <li><a href="#">Tags</a></li>
                 </ul>
             </nav>
@@ -65,12 +65,12 @@ session_start();
         <?php
         require_once '../config.php';
 
-            $stmt = $pdo->prepare("SELECT p.title, p.resume, p.about, u.user_creator as criador, c.name as categoria, p.content, p.creation_date FROM publications p JOIN creators u ON p.creator_id = u.id JOIN categorys c ON p.category_id = c.id");
-            $stmt->execute();
-            $publications = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt = $pdo->prepare("SELECT p.title, p.resume, p.about, u.user_creator as criador, c.name as categoria, p.content, p.creation_date FROM publications p JOIN creators u ON p.creator_id = u.id JOIN categorys c ON p.category_id = c.id");
+        $stmt->execute();
+        $publications = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            if (count($publications) > 0) {
-                ?>
+        if (count($publications) > 0) {
+            ?>
         <div class="pub-container">
             <?php
             foreach ($publications as $pub) {
@@ -97,7 +97,9 @@ session_start();
                 </p>
 
                 <p><strong>Conteudo</strong>
-                    <?= htmlspecialchars($pub['content']) ?>
+                    <span class="content-nl">
+                        <?= htmlspecialchars($pub['content']) ?>
+                    </span>
                 </p>
 
                 <p><strong>Cadastro:</strong>
@@ -110,10 +112,10 @@ session_start();
             ?>
         </div>
         <?php
-            } else {
-                echo "<p>Nenhuma publicação encontrada</p></div>";
-            }
-            ?>
+        } else {
+            echo "<p>Nenhuma publicação encontrada</p></div>";
+        }
+        ?>
 
     </div>
 

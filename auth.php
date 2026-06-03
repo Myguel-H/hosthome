@@ -59,6 +59,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { //veio metodo POST de outro arquivo 
         }
     }
 
+    
+
 }
 header('Location: /pages/login.php');
 exit();

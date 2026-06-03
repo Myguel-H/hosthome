@@ -39,7 +39,7 @@ session_start();
             <!--Icone de person-->
             <div class="person-icon"></div>
             <button class="btn-login" id="menu">
-                <a href="/pages/profile.php">
+                <a href="/pages/login.php">
                     <img src="/static/person-icon.png" alt="icon-login">
                 </a>
             </button>
@@ -78,33 +78,31 @@ session_start();
                 if ($user) {
                     ?>
 
+            <button> <a href="/pages/edit_user.php">Editar</a> </button>
+
             <img class="img-user" src="../static/img_person/admin.jpeg" alt="avatar">
 
 
             <p><strong>Nome:</strong>
-                <?= htmlspecialchars($user['name']) ?><button><img src="../static/botão-editar" alt="Editar"></button>
+                <?= htmlspecialchars($user['name']) ?>
             </p>
             <p><strong>Email:</strong>
-                <?= htmlspecialchars($user['email']) ?><button><img src="../static/botão-editar" alt="Editar"></button>
+                <?= htmlspecialchars($user['email']) ?>
             </p>
             <p><strong>Idade:</strong>
-                <?= htmlspecialchars($user['age'] ?? 'dado não encontrado') ?><button><img src="../static/botão-editar"
-                        alt="Editar"></button>
+                <?= htmlspecialchars($user['age'] ?? 'dado não encontrado') ?>
             </p>
             <p><strong>Sexo:</strong>
-                <?= htmlspecialchars($user['sex'] ?? 'dado não encontrado') ?><button><img src="../static/botão-editar"
-                        alt="Editar"></button>
+                <?= htmlspecialchars($user['sex'] ?? 'dado não encontrado') ?>
             </p>
             <p><strong>Telefone:</strong>
-                <?= htmlspecialchars($user['phone'] ?? 'dado não encontrado') ?><button><img
-                        src="../static/botão-editar" alt="Editar"></button>
+                <?= htmlspecialchars($user['phone'] ?? 'dado não encontrado') ?>
             </p>
             <p><strong>Cadastro:</strong>
-                <?= date('d/m/Y', strtotime($user['data_cadastro'])) ?><button><img src="../static/botão-editar"
-                        alt="Editar"></button>
+                <?= date('d/m/Y', strtotime($user['data_cadastro'])) ?>
             </p>
             <p><strong>Tipo:</strong>
-                <?= htmlspecialchars($user['type']) ?><button><img src="../static/botão-editar" alt="Editar"></button>
+                <?= htmlspecialchars($user['type']) ?>
             </p>
 
             <?php } else {

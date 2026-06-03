@@ -101,7 +101,9 @@ session_start();
                 </p>
 
                 <p><strong>Conteudo</strong>
-                    <?= htmlspecialchars($pub['content']) ?>
+                    <span class="content-nl">
+                        <?= htmlspecialchars($pub['content']) ?>
+                    </span>
                 </p>
 
                 <p><strong>Cadastro:</strong>

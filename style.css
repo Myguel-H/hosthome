@@ -472,8 +472,9 @@ header {
 
 .data-user p {
     display: flex;
+    flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    gap: 12px;
     width: 100%;
     padding: 14px 18px;
     background-color: #f9f9f9;
@@ -494,7 +495,7 @@ header {
 .data-user p strong {
     font-weight: 700;
     color: #0f0f0f;
-    min-width: 120px;
+    white-space: nowrap;
 }
 
 .data-user p button {
@@ -515,6 +516,39 @@ header {
     width: 18px;
     height: 18px;
     object-fit: contain;
+}
+
+/* EDIT PROFILE BUTTON */
+.data-user button {
+    background: linear-gradient(135deg, #C60B4F 0%, #8B0D57 50%, #550A5F 100%);
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 24px rgba(198, 11, 79, 0.25);
+    width: fit-content;
+}
+
+.data-user button a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+}
+
+.data-user button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(198, 11, 79, 0.35);
+}
+
+.data-user button:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 16px rgba(198, 11, 79, 0.2);
 }
 
 @media (max-width: 768px) {
@@ -1582,6 +1616,10 @@ header {
     word-wrap: break-word;
     white-space: normal;
     overflow-wrap: break-word;
+}
+
+.content-nl {
+    white-space: pre-wrap;
 }
 
 .pub-itens p strong {
