@@ -1,5 +1,9 @@
 <?php
+require_once '../config.php';
 session_start();
+if (empty($_SESSION['admin'])) {
+    return header('location: ../otario.php');
+}
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +24,7 @@ session_start();
     <header>
         <div class="logo-name">
             <img class="logo-icon" src="/static/logohosthome.webp" alt="Logo">
-            <a href="../index.php">
+            <a href="/">
                 <h2>HostHome - <strong style="color: #dd1e1e; text-decoration: none;">Administrador</strong></h2>
             </a>
         </div>
@@ -29,9 +33,10 @@ session_start();
             <!---Menu header-->
             <nav>
                 <ul class="menu">
-                    <li><a href="#">Início</a></li>
+                    <li><a href="/">Início</a></li>
                     <li><a href="/pages/profile.php">Perfil</a></li>
-                    <li><a href="/administration/conf_users.php">Conf_Usuários</a></li>
+                    <li><a href="/admin/conf_categorys.php">*Category</a></li>
+                    <li><a href="/admin/conf_publications.php">*Publicações</a></li>
                 </ul>
             </nav>
 
@@ -51,71 +56,60 @@ session_start();
             <ul class="sidebar-actions">
                 <h3>Sobre as publicações</h3>
                 <li><a href="/pages/addpubli.php">Publicar</a></li>
-                <li><a href="/pages/publications.php">Publicações</a></li>
+                <li><a href="#">Apagadas</a></li>
+                <li><a href="#">Favoritas</a></li>
                 <li><a href="/pages/timeline.php">Timeline</a></li>
                 <h3>Sobre</h3>
                 <li><a href="#">Configurações</a></li>
                 <li><a href="#">Ajuda</a></li>
-                <li><a href="../index.php">Sair</a></li>
+                <li><a href="../logout.php">Sair</a></li>
             </ul>
         </nav>
     </div>
 
     <div class="tables">
-        <!--Tabela publicações-->
-        <div class="publication-list">
+        <!--Tabela usuarios-->
+        <div class="user-list">
             <table>
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Título</th>
-                        <th>Sobre</th>
-                        <th>Criador</th>
-                        <th>Categoria</th>
-                        <th>Conteúdo</th>
-                        <th>Data da criação</th>
+                        <th>Usuário</th>
+                        <th>E-mail</th>
+                        <th>Tipo</th>
+                        <th>Ação</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    require_once '../config.php';
+                    
+                    $stmt = $pdo->query("SELECT id, name, email, type FROM users");
+                    $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-                    $stmt = $pdo->query("SELECT p.id, p.title, p.about, u.user_creator as create, c.name as category, p.content, p.creation_date FROM publications p JOIN creators u ON p.creator_id = u.id JOIN categorys c ON p.category_id = c.id ");
-                    $publication = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-
-                    foreach ($publication as $row):
+                    foreach ($users as $row):
                         ?>
                         <tr>
                             <td>
                                 <?= $row['id'] ?>
                             </td>
                             <td>
-                                <?= htmlspecialchars($row['title']) ?>
+                                <?= htmlspecialchars($row['name']) ?>
                             </td>
                             <td>
-                                <?= htmlspecialchars($row['about']) ?>
+                                <?= htmlspecialchars($row['email']) ?>
                             </td>
                             <td>
-                                <?= htmlspecialchars($row['create']) ?>
+                                <?= htmlspecialchars($row['type']) ?>
                             </td>
                             <td>
-                                <?= htmlspecialchars($row['category']) ?>
-                            </td>
-                            <td>
-                                <?= htmlspecialchars($row['content']) ?>
-                            </td>
-                            <td>
-                                <?= date('d/m/Y', strtotime($row['creation_date'])) ?>
-                            </td>
-                            <td>
-                                <form action="../delete_post.php" method="POST">
+                                <form action="../auth.php" method="POST">
                                     <input type="hidden" name="action" value="delete">
                                     <input type="hidden" name="id" value="<?= $row['id'] ?>">
                                     <button type="submit">Deletar</button>
                                 </form>
                             </td>
                         </tr>
+
                     <?php endforeach; ?>
                 </tbody>
             </table>

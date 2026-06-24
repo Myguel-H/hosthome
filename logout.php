@@ -13,6 +13,6 @@ session_destroy(); // destroi a sessão no servidor
 //     );
 // }
 
-header("Location: index.php");
+header("Location: /");
 exit();
 ?>

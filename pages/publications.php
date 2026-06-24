@@ -20,7 +20,7 @@ session_start();
     <header>
         <div class="logo-name">
             <img class="logo-icon" src="/static/logohosthome.webp" alt="Logo">
-            <a href="../index.php">
+            <a href="/">
                 <h2>HostHome</h2>
             </a>
         </div>
@@ -29,7 +29,7 @@ session_start();
             <!---Menu header-->
             <nav>
                 <ul class="menu">
-                    <li><a href="../index.php">Início</a></li>
+                    <li><a href="/">Início</a></li>
                     <li><a href="/pages/addpubli.php">Publicar</a></li>                    
                     <li><a href="#">Tags</a></li>
                 </ul>
@@ -50,13 +50,13 @@ session_start();
         <nav>
             <ul class="sidebar-actions">
                 <h3>Sobre as publicações</h3>
-                <li><a href="#">Recentes</a></li>
+                <li><a href="/admin/addcategorys.php">Criar Categorias</a></li>
                 <li><a href="#">Apagadas</a></li>
                 <li><a href="/pages/timeline.php">Timeline</a></li>                
                 <h3>Sobre</h3>
                 <li><a href="#">Configurações</a></li>
                 <li><a href="#">Sobre</a></li>
-                <li><a href="../index.php">Sair</a></li>
+                <li><a href="../logout.php">Sair</a></li>
             </ul>
         </nav>
     </div>

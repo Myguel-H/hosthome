@@ -1,5 +1,10 @@
 <?php
+require_once '../config.php';
 session_start();
+if (empty($_SESSION['admin'])) {
+    return header('location: ../otario.php');
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -8,7 +13,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administrador - Hosthome</title>
+    <title>Conf-Categorys - Hosthome</title>
     <link class="logo-title" rel="icon" href="../static/logohosthome.webp" type="img-icon">
     <link rel="stylesheet" href="../style.css">
 </head>
@@ -20,7 +25,7 @@ session_start();
     <header>
         <div class="logo-name">
             <img class="logo-icon" src="/static/logohosthome.webp" alt="Logo">
-            <a href="../index.php">
+            <a href="/">
                 <h2>HostHome - <strong style="color: #dd1e1e; text-decoration: none;">Administrador</strong></h2>
             </a>
         </div>
@@ -29,9 +34,10 @@ session_start();
             <!---Menu header-->
             <nav>
                 <ul class="menu">
-                    <li><a href="/index.php">Início</a></li>
+                    <li><a href="/">Início</a></li>
                     <li><a href="/pages/profile.php">Perfil</a></li>
-                    <li><a href="/administration/conf_publications.php">Conf_publications</a></li>
+                    <li><a href="/admin/conf_publications.php">*Publicações</a></li>
+                    <li><a href="/admin/conf_users.php">*Usuários</a></li>
                 </ul>
             </nav>
 
@@ -50,14 +56,14 @@ session_start();
         <nav>
             <ul class="sidebar-actions">
                 <h3>Sobre as publicações</h3>
+                <li><a href="/admin/addcategorys.php">Criar Categoria</a></li>
                 <li><a href="/pages/addpubli.php">Publicar</a></li>
-                <li><a href="#">Apagadas</a></li>
                 <li><a href="#">Favoritas</a></li>
                 <li><a href="/pages/timeline.php">Timeline</a></li>
                 <h3>Sobre</h3>
                 <li><a href="#">Configurações</a></li>
                 <li><a href="#">Ajuda</a></li>
-                <li><a href="../index.php">Sair</a></li>
+                <li><a href="../logout.php">Sair</a></li>
             </ul>
         </nav>
     </div>
@@ -69,20 +75,18 @@ session_start();
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Usuário</th>
-                        <th>E-mail</th>
-                        <th>Tipo</th>
-                        <th>Tipo</th>
+                        <th>Name</th>
+                        <th>Descrição</th>
+                        <th>Ação</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    require_once '../config.php'; //faz uma requisição no config.php
                     
-                    $stmt = $pdo->query("SELECT id, name, email, type FROM users");
-                    $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    $stmt = $pdo->query("SELECT id, name, description FROM categorys");
+                    $category = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-                    foreach ($users as $row):
+                    foreach ($category as $row):
                         ?>
                         <tr>
                             <td>
@@ -92,13 +96,10 @@ session_start();
                                 <?= htmlspecialchars($row['name']) ?>
                             </td>
                             <td>
-                                <?= htmlspecialchars($row['email']) ?>
+                                <?= htmlspecialchars($row['description']) ?>
                             </td>
                             <td>
-                                <?= htmlspecialchars($row['type']) ?>
-                            </td>
-                            <td>
-                                <form action="../auth.php" method="POST">
+                                <form action="../delete_category.php" method="POST">
                                     <input type="hidden" name="action" value="delete">
                                     <input type="hidden" name="id" value="<?= $row['id'] ?>">
                                     <button type="submit">Deletar</button>

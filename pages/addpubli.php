@@ -21,7 +21,7 @@ session_start();
     <header>
         <div class="logo-name">
             <img class="logo-icon" src="/static/logohosthome.webp" alt="Logo">
-            <a href="../index.php">
+            <a href="/">
                 <h2>HostHome</h2>
             </a>
         </div>
@@ -30,7 +30,7 @@ session_start();
             <!---Menu header-->
             <nav>
                 <ul class="menu">
-                    <li><a href="../index.php">Início</a></li>
+                    <li><a href="/">Início</a></li>
                     <li><a href="/pages/publications.php">Publicações</a></li>
                     <li><a href="#">Tags</a></li>
                 </ul>

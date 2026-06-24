@@ -45,16 +45,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { //veio metodo POST de outro arquivo 
         }
     }
 
-    if ($action == 'delete') { //Ação para registro de usuario 
+    if ($action == 'delete') { //Ação para deletar usuario 
         $id = $_POST['id'] ?? '';
 
         try {
             $stmt = $pdo->prepare('DELETE FROM users WHERE id = ?');
             $stmt->execute([$id]);
-            header('Location: /administration/conf_users.php?delete=1');
+            header('Location: /admin/conf_users.php?delete=1');
             exit();
         } catch (PDOException $e) {
-            header('Location: /administration/conf_users.php?error=1');
+            header('Location: /admin/conf_users.php?error=1');
             exit();
         }
     }

@@ -1937,3 +1937,155 @@ header {
         max-height: 400px !important;
     }
 }
+
+/* ======================== RESTRICTED ACCESS PAGE ======================== */
+
+.restricted-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 300px);
+    padding: 40px 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+}
+
+.restricted-container h1 {
+    font-size: 2.5rem;
+    color: #dd1e1e;
+    font-weight: 700;
+    margin-bottom: 30px;
+    letter-spacing: 0.02em;
+    animation: slideDown 0.6s ease-out;
+}
+
+.restricted-container img {
+    width: 280px;
+    height: auto;
+    max-width: 100%;
+    margin: 30px 0;
+    object-fit: contain;
+    animation: fadeIn 0.8s ease-out 0.3s both;
+    filter: drop-shadow(0 8px 24px rgba(221, 30, 30, 0.2));
+}
+
+.restricted-container p {
+    font-size: 1.1rem;
+    color: #4f4f4f;
+    line-height: 1.8;
+    margin-bottom: 40px;
+    animation: fadeIn 0.8s ease-out 0.6s both;
+}
+
+.restricted-container a {
+    display: inline-block;
+    padding: 14px 32px;
+    background: linear-gradient(135deg, #C60B4F 0%, #8B0D57 50%, #550A5F 100%);
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 24px rgba(198, 11, 79, 0.25);
+    cursor: pointer;
+    animation: fadeIn 0.8s ease-out 0.9s both;
+}
+
+.restricted-container a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(198, 11, 79, 0.35);
+}
+
+.restricted-container a:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 16px rgba(198, 11, 79, 0.2);
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ======================== TABLE DELETE BUTTONS ======================== */
+
+.user-list table th:last-child,
+.publication-list table th:last-child {
+    text-align: center;
+    width: 100px !important;
+    max-width: 100px !important;
+    padding: 18px 12px !important;
+}
+
+.user-list table td:last-child,
+.publication-list table td:last-child {
+    text-align: center;
+    padding: 8px 12px !important;
+    width: 100px !important;
+    max-width: 100px !important;
+}
+
+.user-list table td form,
+.publication-list table td form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.user-list table button,
+.publication-list table button,
+.user-list table button:nth-child(1),
+.publication-list table button:nth-child(1) {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #dd1e1e 0%, #a01515 100%);
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 0.01em;
+    box-shadow: 0 4px 12px rgba(221, 30, 30, 0.2);
+    white-space: nowrap !important;
+}
+
+.user-list table button:hover,
+.publication-list table button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(221, 30, 30, 0.35);
+    background: linear-gradient(135deg, #e63a3a 0%, #b01f1f 100%);
+}
+
+.user-list table button:active,
+.publication-list table button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(221, 30, 30, 0.2);
+}
+
+/* ======================== TABLE COLUMN ALIGNMENT ======================== */
+
+.user-list tbody tr:hover,
+.publication-list tbody tr:hover {
+    background-color: #f9f9f9;
+    transition: background-color 0.2s ease;
+}
+
+.user-list table td,
+.publication-list table td {
+    vertical-align: middle;
+    display: table-cell;
+}
