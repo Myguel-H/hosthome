@@ -50,7 +50,7 @@ session_start();
         <nav>
             <ul class="sidebar-actions">
                 <h3>Sobre as publicações</h3>
-                <li><a href="/admin/addcategorys.php">Criar Categorias</a></li>
+                <li><a href="/pages/addcategorys.php">Criar Categorias</a></li>
                 <li><a href="#">Apagadas</a></li>
                 <li><a href="/pages/timeline.php">Timeline</a></li>                
                 <h3>Sobre</h3>
@@ -69,7 +69,7 @@ session_start();
 
         if ($user_id > 0) {
 
-            $stmt = $pdo->prepare("SELECT p.title, p.resume, p.about, u.user_creator as criador, c.name as categoria, p.content, p.creation_date FROM publications p JOIN creators u ON p.creator_id = u.id JOIN categorys c ON p.category_id = c.id");
+            $stmt = $pdo->prepare("SELECT p.title, p.resume, p.about, u.name as criador, c.name as categoria, p.content, p.creation_date FROM publications p JOIN users u ON p.user_id = u.id JOIN categorys c ON p.category_id = c.id");
             $stmt->execute();
             $publications = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

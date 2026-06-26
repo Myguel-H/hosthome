@@ -1,6 +1,7 @@
 <?php
 session_start();
-
+require_once '../config.php';
+$user_id = $_SESSION['user_id'] ?? 0;
 ?>
 
 <!DOCTYPE html>
@@ -66,8 +67,7 @@ session_start();
     <div class="profile-user">
         <div class="data-user">
             <?php
-            require_once '../config.php';
-            $user_id = $_SESSION['user_id'] ?? 0;
+
 
             if ($user_id > 0) {
 
@@ -109,10 +109,10 @@ session_start();
                     echo "<p>USUARIO NAO ECONTRADO</p>";
                 }
             } else {
-                echo"<p>Você não está logado, faça login para poder visualizar! </p>"; 
-            } ?> 
+                echo "<p>Você não está logado, faça login para poder visualizar! </p>";
+            } ?>
         </div>
-        
+
     </div>
 
     <!------------------------- F    O    O    T    E    R --------------------------->

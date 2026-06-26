@@ -1,11 +1,7 @@
 <?php
 require_once '../config.php';
 session_start();
-if (empty($_SESSION['admin'])) {
-    return header('location: ../otario.php');
-}
 
-if ($user_id > 0) {
     ?>
 
     <!DOCTYPE html>
@@ -112,13 +108,6 @@ if ($user_id > 0) {
                                 <td>
                                     <?= htmlspecialchars($row['description']) ?>
                                 </td>
-                                <td>
-                                    <form action="../delete_category.php" method="POST">
-                                        <input type="hidden" name="action" value="delete">
-                                        <input type="hidden" name="id" value="<?= $row['id'] ?>">
-                                        <button type="submit">Deletar</button>
-                                    </form>
-                                </td>
                             </tr>
 
                         <?php endforeach; ?>
@@ -127,9 +116,6 @@ if ($user_id > 0) {
             </div>
         </div>
         <?php
-} else {
-    echo "<p>Você não está logado</p>";
-}
 ?>
     </div>
 

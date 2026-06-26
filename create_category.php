@@ -13,10 +13,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         try {
             $stmt = $pdo->prepare('INSERT INTO categorys (name, description) VALUES (?, ?)');
             $stmt->execute([$name, $description]);
-            header('Location: /admin/addcategorys.php?registered=1');
+            header('Location: /pages/addcategorys.php?registered=1');
             exit();
         } catch (PDOException $e) {
-            header('Location: /admin/addcategorys.php?error=1') . $e->getMessage();
+            header('Location: /pages/addcategorys.php?error=1') . $e->getMessage();
             exit();
         }
     }

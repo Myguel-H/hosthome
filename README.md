@@ -192,8 +192,6 @@ CREATE TABLE categorys (
 
 ## 👤 Autor
 
-**Myguel Henryque Dachery do Prado**
-
 - GitHub: [@Myguel-H](https://github.com/Myguel-H)
 
 ---

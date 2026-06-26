@@ -1,9 +1,6 @@
 <?php
 require_once '../config.php';
 session_start();
-if (empty($_SESSION['admin'])) {
-    return header('location: ../otario.php');
-}
 
 ?>
 
@@ -56,7 +53,7 @@ if (empty($_SESSION['admin'])) {
         <nav>
             <ul class="sidebar-actions">
                 <h3>Sobre as publicações</h3>
-                <li><a href="/admin/addcategorys.php">Criar Categoria</a></li>
+                <li><a href="/pages/addcategorys.php">Criar Categoria</a></li>
                 <li><a href="/pages/addpubli.php">Publicar</a></li>
                 <li><a href="#">Favoritas</a></li>
                 <li><a href="/pages/timeline.php">Timeline</a></li>

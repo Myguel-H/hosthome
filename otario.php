@@ -25,7 +25,7 @@
     <!------------------------- B    O    D    Y --------------------------->
 
     <main class="restricted-container">
-        <h1>🚫 Acesso Restrito</h1>
+        <h1>Acesso Restrito</h1>
         <img src="/static/saidodevtools.png" alt="Acesso Bloqueado">
         <p>
             Você não possui permissão para acessar esta página.

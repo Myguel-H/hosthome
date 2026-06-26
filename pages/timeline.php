@@ -65,9 +65,9 @@ session_start();
         <?php
         require_once '../config.php';
 
-        $stmt = $pdo->prepare("SELECT p.title, p.resume, p.about, u.user_creator as criador, c.name as categoria, p.content, p.creation_date FROM publications p JOIN creators u ON p.creator_id = u.id JOIN categorys c ON p.category_id = c.id");
-        $stmt->execute();
-        $publications = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $stmt = $pdo->prepare("SELECT p.title, p.resume, p.about, u.name as criador, c.name as categoria, p.content, p.creation_date FROM publications p JOIN users u ON p.user_id = u.id JOIN categorys c ON p.category_id = c.id");
+            $stmt->execute();
+            $publications = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         if (count($publications) > 0) {
             ?>

@@ -65,7 +65,6 @@ session_start();
     <div class="add-publication">
 
         <?php
-        require_once '../config.php';
 
         $user_id = $_SESSION['user_id'] ?? 0;
 
@@ -85,16 +84,15 @@ session_start();
                 <textarea name="about" rows="3" required="required" maxlength="250"
                     placeholder="Informações adicionais sobre o tema... Limitado a 250 caracteres"></textarea>
 
-                <label for="creator_id">Criador</label>
-                <select name="creator_id" required="required">
-                    <option value="">Escolha um(a) criador(a)</option>
-                    <?php
-                    $creators = $pdo->query("SELECT id, user_creator FROM creators ORDER BY user_creator")->fetchAll();
-                    foreach ($creators as $creator) {
-                        echo "<option value='{$creator['id']}'>" . htmlspecialchars($creator['user_creator']) . "</option>";
-                    }
-                    ?>
-                </select>
+                <label for="user_id">Criador</label>
+                <?php
+                $stmt = $pdo->prepare("SELECT name FROM users WHERE id = ?");
+                $stmt -> execute ([$_SESSION['user_id']]);
+                $user = $stmt->fetch();
+                $name = $user['name'] ?? 'Usuario';
+                ?>
+                <input type="text" value="<?= htmlspecialchars($name) ?>" disabled>
+                <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?? 00?>">
 
                 <label for="category_id">Categorias</label>
                 <select name="category_id" required="required">
