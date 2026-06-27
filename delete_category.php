@@ -9,9 +9,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $id = $_POST['id'] ?? '';
 
         try {
-            $stmt = $pdo->prepare('DELETE FROM categorys WHERE id = ?');
+            $stmt = $pdo->prepare('DELETE FROM categories WHERE id = ?');
             $stmt->execute([$id]);
-            header('Location: /admin/conf_categorys.php?delete=1');
+            header('Location: /admin/conf_categories.php?delete=1');
             exit();
         } catch (PDOException $e) {
             header('Location: /pages/register.php?error=1');

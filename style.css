@@ -293,7 +293,8 @@ header {
     }
 
     .user-list,
-    .publication-list {
+    .publication-list,
+    .admin-categories-table {
         float: none;
         width: calc(100% - 384px);
         max-width: calc(100% - 384px);
@@ -834,8 +835,7 @@ header {
 
 /* ======================== USER LIST & PUBLICATION LIST ======================== */
 
-.user-list,
-.publication-list {
+.user-list, .publication-list, .categories-list {
     display: block;
     width: min(100%, 1180px);
     max-width: 1180px;
@@ -848,8 +848,14 @@ header {
     z-index: 1;
 }
 
-.user-list table,
-.publication-list table {
+/* Ensure conf_categories uses the same max-width as add_categories category list */
+.tables .categories-list {
+    width: 100%;
+    max-width: 1400px;
+    margin: 40px auto;
+}
+
+.user-list table, .publication-list table, .categories-list table {
     display: table;
     width: 100%;
     min-width: 720px;
@@ -871,8 +877,7 @@ header {
     width: 100% !important;
 }
 
-.user-list thead,
-.publication-list thead {
+.user-list thead, .publication-list thead, .categories-list thead {
     background: linear-gradient(135deg, #f8f9fa 0%, #f0f2f5 100%);
     border-bottom: 2px solid #e8e8e8;
     display: table;
@@ -880,8 +885,7 @@ header {
     table-layout: fixed;
 }
 
-.user-list th,
-.publication-list th {
+.user-list th, .publication-list th, .categories-list th {
     padding: 18px 16px;
     text-align: left;
     font-weight: 600;
@@ -896,8 +900,7 @@ header {
     max-width: 50px;
 }
 
-.user-list tbody tr,
-.publication-list tbody tr {
+.user-list tbody tr, .publication-list tbody tr, .categories-list tbody tr {
     border-bottom: 1px solid #f0f0f0;
     transition: background-color 0.25s ease, transform 0.2s ease;
     position: relative;
@@ -912,25 +915,21 @@ header {
     max-height: 50px !important;
 }
 
-.user-list tbody,
-.publication-list tbody {
+.user-list tbody, .publication-list tbody, .categories-list tbody {
     display: block;
     max-height: calc(10 * 50px);
     overflow-y: auto;
 }
 
-.user-list tbody tr:hover,
-.publication-list tbody tr:hover {
+.user-list tbody tr:hover, .publication-list tbody tr:hover, .categories-list tbody tr:hover {
     background-color: #fafbfc;
 }
 
-.user-list tbody tr:last-child,
-.publication-list tbody tr:last-child {
+.user-list tbody tr:last-child, .publication-list tbody tr:last-child, .categories-list tbody tr:last-child {
     border-bottom: none;
 }
 
-.user-list td,
-.publication-list td {
+.user-list td, .publication-list td, .categories-list td {
     padding: 16px;
     color: #4f4f4f;
     word-break: break-word;
@@ -940,8 +939,7 @@ header {
     white-space: nowrap !important;
 }
 
-.user-list td:first-child,
-.publication-list td:first-child {
+.user-list td:first-child, .publication-list td:first-child, .categories-list td:first-child {
     color: #7f7f7f;
     font-weight: 600;
     font-size: 0.9rem;
@@ -962,19 +960,16 @@ header {
 
 /* Responsividade para telas menores */
 @media (max-width: 1024px) {
-    .user-list table,
-    .publication-list table {
+    .user-list table, .publication-list table, .categories-list table {
         font-size: 0.9rem;
     }
 
-    .user-list th,
-    .publication-list th {
+    .user-list th, .publication-list th, .categories-list th {
         padding: 14px 12px;
         font-size: 0.88rem;
     }
 
-    .user-list td,
-    .publication-list td {
+    .user-list td, .publication-list td, .categories-list td {
         padding: 12px;
         max-width: 180px !important;
         overflow: hidden !important;
@@ -1107,7 +1102,7 @@ header {
     }
 
     .publication-list table,
-    .user-list table {
+    .publication-list table, .user-list table, .categories-list table {
         min-width: 100%;
     }
 
@@ -1150,24 +1145,20 @@ header {
 }
 
 @media (max-width: 768px) {
-    .user-list,
-    .publication-list {
+    .user-list, .publication-list, .categories-list {
         margin: 30px auto;
     }
 
-    .user-list table,
-    .publication-list table {
+    .user-list table, .publication-list table, .categories-list table {
         font-size: 0.85rem;
     }
 
-    .user-list th,
-    .publication-list th {
+    .user-list th, .publication-list th, .categories-list th {
         padding: 12px 10px;
         font-size: 0.8rem;
     }
 
-    .user-list td,
-    .publication-list td {
+    .user-list td, .publication-list td, .categories-list td {
         padding: 10px;
         max-width: 120px !important;
         overflow: hidden !important;
@@ -1401,6 +1392,13 @@ header {
     display: flex;
     flex-direction: column;
     gap: 32px;
+}
+
+/* Center form and categories table and make them the same max width inside .add-publication */
+.add-publication .categories-list {
+    width: 100%;
+    max-width: 100%;
+    margin: 12px auto 0;
 }
 
 /* ======================== FORM STYLE ======================== */
@@ -2076,6 +2074,35 @@ header {
     box-shadow: 0 2px 8px rgba(221, 30, 30, 0.2);
 }
 
+/* Delete button styles for categories-list (same as user-list) */
+.categories-list table button,
+.categories-list table button:nth-child(1) {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #dd1e1e 0%, #a01515 100%);
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 0.01em;
+    box-shadow: 0 4px 12px rgba(221, 30, 30, 0.2);
+    white-space: nowrap !important;
+}
+
+.categories-list table button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(221, 30, 30, 0.35);
+    background: linear-gradient(135deg, #e63a3a 0%, #b01f1f 100%);
+}
+
+.categories-list table button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(221, 30, 30, 0.2);
+}
+
 /* ======================== TABLE COLUMN ALIGNMENT ======================== */
 
 .user-list tbody tr:hover,
@@ -2088,4 +2115,54 @@ header {
 .publication-list table td {
     vertical-align: middle;
     display: table-cell;
+}
+
+/* Default categories-list column widths (used where there is no Actions column) */
+.categories-list table {
+    table-layout: fixed;
+}
+
+.categories-list th:nth-child(1),
+.categories-list td:nth-child(1) {
+    width: 10%;
+    max-width: 10%;
+}
+
+.categories-list th:nth-child(2),
+.categories-list td:nth-child(2) {
+    width: 30%;
+    max-width: 30%;
+}
+
+.categories-list th:nth-child(3),
+.categories-list td:nth-child(3) {
+    width: 60%;
+    min-width: calc(60% + 50px);
+}
+
+/* Admin variant: tables that include an Actions column */
+.categories-list.with-actions table {
+    table-layout: fixed;
+}
+
+.categories-list.with-actions th:nth-child(1),
+.categories-list.with-actions td:nth-child(1) {
+    width: 10%;
+}
+
+.categories-list.with-actions th:nth-child(2),
+.categories-list.with-actions td:nth-child(2) {
+    width: 30%;
+}
+
+.categories-list.with-actions th:nth-child(3),
+.categories-list.with-actions td:nth-child(3) {
+    width: 45%;
+    min-width: calc(45% + 50px);
+}
+
+.categories-list.with-actions th:nth-child(4),
+.categories-list.with-actions td:nth-child(4) {
+    width: 15%;
+    max-width: 15%;
 }

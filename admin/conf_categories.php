@@ -1,6 +1,7 @@
 <?php
 require_once '../config.php';
 session_start();
+$isAdmin = !empty($_SESSION['admin']);
 
 ?>
 
@@ -10,7 +11,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conf-Categorys - Hosthome</title>
+    <title>Conf-Categories - Hosthome</title>
     <link class="logo-title" rel="icon" href="../static/logohosthome.webp" type="img-icon">
     <link rel="stylesheet" href="../style.css">
 </head>
@@ -53,10 +54,16 @@ session_start();
         <nav>
             <ul class="sidebar-actions">
                 <h3>Sobre as publicações</h3>
-                <li><a href="/pages/addcategorys.php">Criar Categoria</a></li>
-                <li><a href="/pages/addpubli.php">Publicar</a></li>
+                <li><a href="/pages/add_categories.php">Criar Categoria</a></li>
+                <li><a href="/pages/add_publication.php">Publicar</a></li>
                 <li><a href="#">Favoritas</a></li>
                 <li><a href="/pages/timeline.php">Timeline</a></li>
+                <?php if ($isAdmin): ?>
+                <h3>Administrador</h3>
+                <li><a href="/admin/conf_users.php">Usuarios</a></li>
+                <li><a href="/admin/conf_publications.php">Publicações</a></li>
+                <li><a href="/admin/conf_categories.php">Categorias</a></li>
+                <?php endif; ?>
                 <h3>Sobre</h3>
                 <li><a href="#">Configurações</a></li>
                 <li><a href="#">Ajuda</a></li>
@@ -65,9 +72,9 @@ session_start();
         </nav>
     </div>
 
-    <div class="tables">
-        <!--Tabela usuarios-->
-        <div class="user-list">
+    <div class="tables admin-categories-table">
+        <!--Tabela categorias-->
+        <div class="categories-list with-actions">
             <table>
                 <thead>
                     <tr>
@@ -79,8 +86,8 @@ session_start();
                 </thead>
                 <tbody>
                     <?php
-                    
-                    $stmt = $pdo->query("SELECT id, name, description FROM categorys");
+
+                    $stmt = $pdo->query("SELECT id, name, description FROM categories");
                     $category = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     foreach ($category as $row):

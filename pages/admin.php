@@ -1,5 +1,6 @@
 <?php
 session_start();
+$isAdmin = !empty($_SESSION['admin']);
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +33,7 @@ session_start();
                     <li><a href="#">Início</a></li>
                     <li><a href="/pages/publications.php">Publicações</a></li>
                     <li><a href="/admin/conf_users.php">Conf_Usuários</a></li>
-                    <li><a href="/admin/addcategorys.php">Categorias</a></li>
+                    <li><a href="/admin/conf_categories.php">Categorias</a></li>
                 </ul>
             </nav>
 
@@ -55,6 +56,12 @@ session_start();
                 <li><a href="#">Apagadas</a></li>
                 <li><a href="#">Favoritas</a></li>
                 <li><a href="/pages/timeline.php">Timeline</a></li>
+                <?php if ($isAdmin): ?>
+                <h3>Administrador</h3>
+                <li><a href="/admin/conf_users.php">Usuarios</a></li>
+                <li><a href="/admin/conf_publications.php">Publicações</a></li>
+                <li><a href="/admin/conf_categories.php">Categorias</a></li>
+                <?php endif; ?>
                 <h3>Sobre</h3>
                 <li><a href="#">Configurações</a></li>
                 <li><a href="#">Ajuda</a></li>
@@ -125,7 +132,7 @@ session_start();
                     <?php
                     require_once '../config.php';
 
-                    $stmt = $pdo->query("SELECT p.id, p.title, p.about, u.user_creator as create, c.name as category, p.content, p.creation_date FROM publications p JOIN creators u ON p.creator_id = u.id JOIN categorys c ON p.category_id = c.id ");
+                    $stmt = $pdo->query("SELECT p.id, p.title, p.about, u.user_creator as create, c.name as category, p.content, p.creation_date FROM publications p JOIN creators u ON p.creator_id = u.id JOIN categories c ON p.category_id = c.id ");
                     $publication = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 

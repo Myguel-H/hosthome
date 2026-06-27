@@ -2,6 +2,7 @@
 session_start();
 require_once '../config.php';
 $user_id = $_SESSION['user_id'] ?? 0;
+$isAdmin = !empty($_SESSION['admin']);
 ?>
 
 <!DOCTYPE html>
@@ -33,7 +34,7 @@ $user_id = $_SESSION['user_id'] ?? 0;
                 <ul class="menu">
                     <li><a href="/">Início</a></li>
                     <li><a href="/pages/publications.php">Publicações</a></li>
-                    <li><a href="/pages/addpubli.php">Publicar</a></li>
+                    <li><a href="/pages/add_publication.php">Publicar</a></li>
                 </ul>
             </nav>
 
@@ -53,9 +54,15 @@ $user_id = $_SESSION['user_id'] ?? 0;
         <nav>
             <ul class="sidebar-actions">
                 <h3>Sobre as publicações</h3>
-                <li><a href="#">Recentes</a></li>
+                <li><a href="/pages/timeline.php">Timeline</a></li>
                 <li><a href="#">Apagadas</a></li>
                 <li><a href="#">Favoritas</a></li>
+                <?php if ($isAdmin): ?>
+                <h3>Administrador</h3>
+                <li><a href="/admin/conf_users.php">Usuarios</a></li>
+                <li><a href="/admin/conf_publications.php">Publicações</a></li>
+                <li><a href="/admin/conf_categories.php">Categorias</a></li>
+                <?php endif; ?>
                 <h3>Sobre</h3>
                 <li><a href="#">Configurações</a></li>
                 <li><a href="#">Sobre</a></li>

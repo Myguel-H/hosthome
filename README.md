@@ -125,13 +125,13 @@ CREATE TABLE publications (
     category_id INTEGER NOT NULL,
     creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (creator_id) REFERENCES creators(id),
-    FOREIGN KEY (category_id) REFERENCES categorys(id)
+    FOREIGN KEY (category_id) REFERENCES categories(id)
 );
 ```
 
-### `categorys`
+### `categories`
 ```sql
-CREATE TABLE categorys (
+CREATE TABLE categories (
     id SERIAL PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
     description TEXT,
@@ -184,7 +184,7 @@ CREATE TABLE categorys (
 | `/pages/register.php` | Registro |
 | `/pages/profile.php` | Perfil |
 | `/pages/publications.php` | Publicações |
-| `/pages/addpubli.php` | Criar publicação |
+| `/pages/add_publication.php` | Criar publicação |
 | `/admin/conf_users.php` | Gerenciar usuários (admin) |
 | `/admin/conf_publications.php` | Gerenciar publicações (admin) |
 

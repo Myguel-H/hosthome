@@ -1,5 +1,6 @@
 <?php
 session_start();
+$isAdmin = !empty($_SESSION['admin']);
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +31,7 @@ session_start();
             <nav>
                 <ul class="menu">
                     <li><a href="/">Início</a></li>
-                    <li><a href="/pages/addpubli.php">Publicar</a></li>                    
+                    <li><a href="/pages/add_publication.php">Publicar</a></li>
                     <li><a href="#">Tags</a></li>
                 </ul>
             </nav>
@@ -50,9 +51,15 @@ session_start();
         <nav>
             <ul class="sidebar-actions">
                 <h3>Sobre as publicações</h3>
-                <li><a href="/pages/addcategorys.php">Criar Categorias</a></li>
+                <li><a href="/pages/add_categories.php">Criar Categoria</a></li>
                 <li><a href="#">Apagadas</a></li>
-                <li><a href="/pages/timeline.php">Timeline</a></li>                
+                <li><a href="/pages/timeline.php">Timeline</a></li>
+                <?php if ($isAdmin): ?>
+                <h3>Administrador</h3>
+                <li><a href="/admin/conf_users.php">Usuarios</a></li>
+                <li><a href="/admin/conf_publications.php">Publicações</a></li>
+                <li><a href="/admin/conf_categories.php">Categorias</a></li>
+                <?php endif; ?>
                 <h3>Sobre</h3>
                 <li><a href="#">Configurações</a></li>
                 <li><a href="#">Sobre</a></li>
@@ -69,7 +76,7 @@ session_start();
 
         if ($user_id > 0) {
 
-            $stmt = $pdo->prepare("SELECT p.title, p.resume, p.about, u.name as criador, c.name as categoria, p.content, p.creation_date FROM publications p JOIN users u ON p.user_id = u.id JOIN categorys c ON p.category_id = c.id");
+            $stmt = $pdo->prepare("SELECT p.id, p.title, p.resume, p.about, u.name as criador, c.name as categoria, p.content, p.creation_date FROM publications p JOIN users u ON p.user_id = u.id JOIN categories c ON p.category_id = c.id");
             $stmt->execute();
             $publications = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -80,7 +87,11 @@ session_start();
             foreach ($publications as $pub) {
                 ?>
             <div class="pub-itens">
-                <p><strong>Titulo</strong>
+                <p><strong>Titulo
+                        <?php if ($isAdmin): ?>-<strong style="color: #dd1e1e; text-decoration: none;"> #ID 
+                            <?= htmlspecialchars($pub['id']) ?> </strong>
+                        <?php endif; ?>
+                    </strong>
                     <?= htmlspecialchars($pub['title']) ?>
                 </p>
 

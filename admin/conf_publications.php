@@ -4,6 +4,7 @@ session_start();
 if (empty($_SESSION['admin'])) {
     return header('location: ../otario.php');
 }
+$isAdmin = !empty($_SESSION['admin']);
 
 ?>
 
@@ -36,7 +37,7 @@ if (empty($_SESSION['admin'])) {
                 <ul class="menu">
                     <li><a href="#">Início</a></li>
                     <li><a href="/pages/profile.php">Perfil</a></li>
-                    <li><a href="/admin/conf_categorys.php">*Categorias</a></li>
+                    <li><a href="/admin/conf_categories.php">*Categorias</a></li>
                     <li><a href="/admin/conf_users.php">*Usuários</a></li>
                 </ul>
             </nav>
@@ -56,11 +57,16 @@ if (empty($_SESSION['admin'])) {
         <nav>
             <ul class="sidebar-actions">
                 <h3>Sobre as publicações</h3>
-                <li><a href="/pages/addpubli.php">Publicar</a></li>
+                <li><a href="/pages/add_publication.php">Publicar</a></li>
                 <li><a href="/pages/publications.php">Publicações</a></li>
                 <li><a href="/pages/timeline.php">Timeline</a></li>
+                <?php if ($isAdmin): ?>
+                <h3>Administrador</h3>
+                <li><a href="/admin/conf_users.php">Usuarios</a></li>
+                <li><a href="/admin/conf_publications.php">Publicações</a></li>
+                <li><a href="/admin/conf_categories.php">Categorias</a></li>
+                <?php endif; ?>
                 <h3>Sobre</h3>
-                <li><a href="#">Configurações</a></li>
                 <li><a href="#">Ajuda</a></li>
                 <li><a href="../logout.php">Sair</a></li>
             </ul>
@@ -86,7 +92,9 @@ if (empty($_SESSION['admin'])) {
                 <tbody>
                     <?php
 
-                    $stmt = $pdo->query("SELECT p.id, p.title, p.about, u.user_creator as create, c.name as category, p.content, p.creation_date FROM publications p JOIN creators u ON p.creator_id = u.id JOIN categorys c ON p.category_id = c.id ");
+
+                    $stmt = $pdo->query("SELECT p.id, p.title, p.about, u.name as criador, c.name as category, p.content, p.creation_date FROM publications p JOIN users u ON p.user_id = u.id JOIN categories c ON p.category_id = c.id");
+                    $stmt -> execute();
                     $publication = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
@@ -103,7 +111,7 @@ if (empty($_SESSION['admin'])) {
                                 <?= htmlspecialchars($row['about']) ?>
                             </td>
                             <td>
-                                <?= htmlspecialchars($row['create']) ?>
+                                <?= htmlspecialchars($row['criador']) ?>
                             </td>
                             <td>
                                 <?= htmlspecialchars($row['category']) ?>

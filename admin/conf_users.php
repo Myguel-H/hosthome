@@ -1,9 +1,8 @@
 <?php
 require_once '../config.php';
 session_start();
-if (empty($_SESSION['admin'])) {
-    return header('location: ../otario.php');
-}
+$isAdmin = !empty($_SESSION['admin']);
+
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +34,7 @@ if (empty($_SESSION['admin'])) {
                 <ul class="menu">
                     <li><a href="/">Início</a></li>
                     <li><a href="/pages/profile.php">Perfil</a></li>
-                    <li><a href="/admin/conf_categorys.php">*Category</a></li>
+                    <li><a href="/admin/conf_categories.php">*Category</a></li>
                     <li><a href="/admin/conf_publications.php">*Publicações</a></li>
                 </ul>
             </nav>
@@ -55,10 +54,16 @@ if (empty($_SESSION['admin'])) {
         <nav>
             <ul class="sidebar-actions">
                 <h3>Sobre as publicações</h3>
-                <li><a href="/pages/addpubli.php">Publicar</a></li>
+                <li><a href="/pages/add_publication.php">Publicar</a></li>
                 <li><a href="#">Apagadas</a></li>
                 <li><a href="#">Favoritas</a></li>
                 <li><a href="/pages/timeline.php">Timeline</a></li>
+                <?php if ($isAdmin): ?>
+                <h3>Administrador</h3>
+                <li><a href="/admin/conf_users.php">Usuarios</a></li>
+                <li><a href="/admin/conf_publications.php">Publicações</a></li>
+                <li><a href="/admin/conf_categories.php">Categorias</a></li>
+                <?php endif; ?>
                 <h3>Sobre</h3>
                 <li><a href="#">Configurações</a></li>
                 <li><a href="#">Ajuda</a></li>
@@ -102,7 +107,7 @@ if (empty($_SESSION['admin'])) {
                                 <?= htmlspecialchars($row['type']) ?>
                             </td>
                             <td>
-                                <form action="../auth.php" method="POST">
+                                <form action="../delete_user.php" method="POST">
                                     <input type="hidden" name="action" value="delete">
                                     <input type="hidden" name="id" value="<?= $row['id'] ?>">
                                     <button type="submit">Deletar</button>

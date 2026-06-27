@@ -1,6 +1,7 @@
 <?php
 require_once '../config.php';
 session_start();
+$isAdmin = !empty($_SESSION['admin']);
 ?>
 
 <!DOCTYPE html>
@@ -54,6 +55,12 @@ session_start();
                 <li><a href="#">Recentes</a></li>
                 <li><a href="#">Apagadas</a></li>
                 <li><a href="#">Favoritas</a></li>
+                <?php if ($isAdmin): ?>
+                <h3>Administrador</h3>
+                <li><a href="/admin/conf_users.php">Usuarios</a></li>
+                <li><a href="/admin/conf_publications.php">Publicações</a></li>
+                <li><a href="/admin/conf_categories.php">Categorias</a></li>
+                <?php endif; ?>
                 <h3>Sobre</h3>
                 <li><a href="#">Configurações</a></li>
                 <li><a href="#">Sobre</a></li>
@@ -98,8 +105,8 @@ session_start();
                 <select name="category_id" required="required">
                     <option value="">Escolha uma categoria</option>
                     <?php
-                    $categorys = $pdo->query("SELECT id, name FROM categorys ORDER BY name")->fetchAll();
-                    foreach ($categorys as $category) {
+                    $categories = $pdo->query("SELECT id, name FROM categories ORDER BY name")->fetchAll();
+                    foreach ($categories as $category) {
                         echo "<option value='{$category['id']}'>" . htmlspecialchars($category['name']) . "</option>";
                     }
                     ?>

@@ -19,6 +19,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { //veio metodo POST de outro arquivo 
         if ($user && password_verify($password, $user['password'])) {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_email'] = $user['email'];
+
+            if($user['type'] === 'admin') {
+                $_SESSION['admin'] = true;
+            } else {
+                $_SESSION['admin'] = false;
+            }
+
             header('Location: /pages/profile.php?logado'); //se os dados tiverem corretos manda para a location
             exit();
         } else {
@@ -44,23 +51,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { //veio metodo POST de outro arquivo 
             exit();
         }
     }
-
-    if ($action == 'delete') { //Ação para deletar usuario 
-        $id = $_POST['id'] ?? '';
-
-        try {
-            $stmt = $pdo->prepare('DELETE FROM users WHERE id = ?');
-            $stmt->execute([$id]);
-            header('Location: /admin/conf_users.php?delete=1');
-            exit();
-        } catch (PDOException $e) {
-            header('Location: /admin/conf_users.php?error=1');
-            exit();
-        }
-    }
-
-    
-
 }
 header('Location: /pages/login.php');
 exit();

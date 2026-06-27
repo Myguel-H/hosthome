@@ -23,10 +23,10 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- Name: categorys; Type: TABLE; Schema: public; Owner: nygts
+-- Name: categories; Type: TABLE; Schema: public; Owner: nygts
 --
 
-CREATE TABLE public.categorys (
+CREATE TABLE public.categories (
     id integer NOT NULL,
     name character varying(50) NOT NULL,
     creation_date timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
@@ -34,7 +34,7 @@ CREATE TABLE public.categorys (
 );
 
 
-ALTER TABLE public.categorys OWNER TO nygts;
+ALTER TABLE public.categories OWNER TO nygts;
 
 --
 -- Name: category_id_seq; Type: SEQUENCE; Schema: public; Owner: nygts
@@ -55,7 +55,7 @@ ALTER TABLE public.category_id_seq OWNER TO nygts;
 -- Name: category_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: nygts
 --
 
-ALTER SEQUENCE public.category_id_seq OWNED BY public.categorys.id;
+ALTER SEQUENCE public.category_id_seq OWNED BY public.categories.id;
 
 
 --
@@ -175,10 +175,10 @@ ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 
 
 --
--- Name: categorys id; Type: DEFAULT; Schema: public; Owner: nygts
+-- Name: categories id; Type: DEFAULT; Schema: public; Owner: nygts
 --
 
-ALTER TABLE ONLY public.categorys ALTER COLUMN id SET DEFAULT nextval('public.category_id_seq'::regclass);
+ALTER TABLE ONLY public.categories ALTER COLUMN id SET DEFAULT nextval('public.category_id_seq'::regclass);
 
 
 --
@@ -203,10 +203,10 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 
 
 --
--- Data for Name: categorys; Type: TABLE DATA; Schema: public; Owner: nygts
+-- Data for Name: categories; Type: TABLE DATA; Schema: public; Owner: nygts
 --
 
-COPY public.categorys (id, name, creation_date, description) FROM stdin;
+COPY public.categories (id, name, creation_date, description) FROM stdin;
 21	linux	2026-06-26 01:55:17.00905	tesntado dnv\r\n
 \.
 
@@ -273,10 +273,10 @@ SELECT pg_catalog.setval('public.users_id_seq', 9, true);
 
 
 --
--- Name: categorys category_pkey; Type: CONSTRAINT; Schema: public; Owner: nygts
+-- Name: categories category_pkey; Type: CONSTRAINT; Schema: public; Owner: nygts
 --
 
-ALTER TABLE ONLY public.categorys
+ALTER TABLE ONLY public.categories
     ADD CONSTRAINT category_pkey PRIMARY KEY (id);
 
 
