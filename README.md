@@ -155,19 +155,6 @@ CREATE TABLE categories (
     creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 ```
-
----
-
-## 🛡️ Segurança
-
-- ✅ Autenticação via sessões PHP
-- ✅ Senhas criptografadas com `password_hash()`
-- ✅ Proteção contra SQL Injection com prepared statements
-- ✅ Validação de acesso por tipo de usuário
-- ✅ Escape de HTML com `htmlspecialchars()`
-
----
-
 ## 🛠️ Stack Tecnológico
 
 ### Frontend
