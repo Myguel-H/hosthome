@@ -27,13 +27,13 @@ cd hosthome
 ### 2. Iniciar o Servidor
 
 ```bash
-php -S localhost:2000
+php -S localhost:2002
 ```
 
 ### 3. Acessar
 
 ```
-http://localhost:2000
+http://localhost:2002
 ```
 
 ---
@@ -57,7 +57,7 @@ GRANT ALL PRIVILEGES ON DATABASE hosthome_db TO nygts;
 #### Importar Schema
 
 ```bash
-psql -U nygts -d hosthome_db -f banco.sql
+psql -U nygts -d hosthome_db -f banco.db
 ```
 
 #### Configurar `config.php`
@@ -85,16 +85,32 @@ try {
 ```
 hosthome/
 ├── admin/                    # Painel administrativo
+│   ├── conf_categories.php   # Gerenciar categorias
+│   ├── conf_publications.php # Gerenciar publicações
+│   └── conf_users.php        # Gerenciar usuários
 ├── pages/                    # Páginas públicas
+│   ├── add_categories.php    # Criar categoria + listar categorias
+│   ├── add_publication.php   # Criar publicação
+│   ├── admin.php             # Painel do usuário / admin
+│   ├── edit_user.php         # Editar usuário
+│   ├── login.php             # Login
+│   ├── profile.php           # Perfil do usuário
+│   ├── publications.php      # Lista de publicações
+│   ├── register.php          # Registro
+│   └── timeline.php          # Timeline pública
 ├── static/                   # Imagens e ícones
-├── auth.php                  # Autenticação
+├── api-notice.php            # Integração de notícias
+├── auth.php                  # Autenticação e sessão
+├── banco.db                  # Dump do banco de dados
 ├── config.php                # Configuração BD
-├── index.php                 # Página inicial
 ├── create_post.php           # Criar publicação
 ├── create_category.php       # Criar categoria
 ├── delete_post.php           # Deletar publicação
 ├── delete_category.php       # Deletar categoria
+├── delete_user.php           # Deletar usuário
+├── index.php                 # Página inicial
 ├── logout.php                # Logout
+├── otario.php                # Redirecionamento de acesso não autorizado
 └── style.css                 # Estilos
 ```
 
@@ -119,12 +135,13 @@ CREATE TABLE users (
 CREATE TABLE publications (
     id SERIAL PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
+    resume TEXT NOT NULL,
     about TEXT NOT NULL,
     content TEXT NOT NULL,
-    creator_id INTEGER NOT NULL,
+    user_id INTEGER NOT NULL,
     category_id INTEGER NOT NULL,
     creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (creator_id) REFERENCES creators(id),
+    FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (category_id) REFERENCES categories(id)
 );
 ```
@@ -185,8 +202,10 @@ CREATE TABLE categories (
 | `/pages/profile.php` | Perfil |
 | `/pages/publications.php` | Publicações |
 | `/pages/add_publication.php` | Criar publicação |
+| `/pages/add_categories.php` | Criar categoria e listar categorias |
 | `/admin/conf_users.php` | Gerenciar usuários (admin) |
 | `/admin/conf_publications.php` | Gerenciar publicações (admin) |
+| `/admin/conf_categories.php` | Gerenciar categorias (admin) |
 
 ---
 

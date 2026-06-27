@@ -54,7 +54,6 @@ $isAdmin = !empty($_SESSION['admin']);
                 <?php if(!empty($_SESSION['user_id'])): ?>
                 <li><a href="/pages/add_categories.php">Criar Categoria</a></li>
                 <?php endif; ?>
-
                 <li><a href="/pages/publications.php">Publicações</a></li>
                 <li><a href="/pages/timeline.php">Timeline</a></li>
                 <?php if ($isAdmin): ?>
